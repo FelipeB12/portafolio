@@ -14,10 +14,10 @@ export async function GET(request: NextRequest) {
 
         const { searchParams } = new URL(request.url);
         const query = blogQuerySchema.parse({
-            tag: searchParams.get("tag"),
-            published: searchParams.get("published"),
-            limit: searchParams.get("limit"),
-            skip: searchParams.get("skip"),
+            tag: searchParams.get("tag") || undefined,
+            published: searchParams.get("published") || undefined,
+            limit: searchParams.get("limit") || undefined,
+            skip: searchParams.get("skip") || undefined,
         });
 
         const filter: any = {};

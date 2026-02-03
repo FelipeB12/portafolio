@@ -1,11 +1,10 @@
-import { NextRequest } from "next/server";
 
 /**
  * Get the current authenticated session
  * NOTE: This is a placeholder for next-auth@beta
  * In production, implement proper session retrieval
  */
-export async function getSession(): Promise<any> {
+export async function getSession(): Promise<unknown> {
     // TODO: Implement with next-auth@beta auth() function
     return null;
 }
@@ -13,8 +12,8 @@ export async function getSession(): Promise<any> {
 /**
  * Require authentication - throws if not authenticated
  */
-export async function requireAuth(): Promise<any> {
-    const session = await getSession();
+export async function requireAuth(): Promise<{ user: { role: string; id: string; email: string; name: string } }> {
+    const session = await getSession() as { user: { role: string; id: string; email: string; name: string } } | null;
 
     if (!session || !session.user) {
         throw new Error("Unauthorized");
@@ -26,7 +25,7 @@ export async function requireAuth(): Promise<any> {
 /**
  * Require admin role - throws if not admin
  */
-export async function requireAdmin(): Promise<any> {
+export async function requireAdmin(): Promise<{ user: { role: string; id: string; email: string; name: string } }> {
     const session = await requireAuth();
 
     if (session.user.role !== "admin") {
@@ -41,7 +40,7 @@ export async function requireAdmin(): Promise<any> {
  */
 export async function isAdmin(): Promise<boolean> {
     try {
-        const session = await getSession();
+        const session = await getSession() as { user: { role: string } } | null;
         return session?.user?.role === "admin";
     } catch {
         return false;

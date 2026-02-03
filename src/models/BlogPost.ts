@@ -55,7 +55,7 @@ const BlogPostSchema = new Schema<IBlogPost>(
 );
 
 // Indexes
-BlogPostSchema.index({ slug: 1 });
+BlogPostSchema.index({ publishedAt: -1 });
 BlogPostSchema.index({ publishedAt: -1 });
 BlogPostSchema.index({ tags: 1 });
 

@@ -35,8 +35,7 @@ const UserSchema = new Schema<IUser>(
     }
 );
 
-// Indexes
-UserSchema.index({ email: 1 });
+// No explicit index needed for email as unique: true handles it
 
 const User: Model<IUser> =
     mongoose.models.User || mongoose.model<IUser>("User", UserSchema);

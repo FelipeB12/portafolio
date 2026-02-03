@@ -93,7 +93,7 @@ const ProjectSchema = new Schema<IProject>(
 );
 
 // Indexes
-ProjectSchema.index({ slug: 1 });
+ProjectSchema.index({ featured: 1 });
 ProjectSchema.index({ featured: 1 });
 ProjectSchema.index({ createdAt: -1 });
 
