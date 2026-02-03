@@ -154,23 +154,27 @@ async function seed() {
                     "Learn best practices for building production-ready Next.js applications that scale.",
                 contentMarkdown: `# Building Scalable Next.js Applications
 
-Next.js has become the go-to framework for building modern React applications. Here are some best practices I've learned from building production applications.
+Next.js has become the de-facto standard for building React applications. In this post, we'll explore how to keep your codebase clean.
 
-## 1. Use App Router
+## 1. Project Structure
+A good structure is key. We recommend using the \`@/\` path alias.
 
-The new App Router in Next.js 13+ provides better performance and developer experience.
+\`\`\`typescript
+// Example of a clean import
+import { useAuth } from "@/hooks/useAuth";
+\`\`\`
 
-## 2. Implement Proper Caching
+## 2. Server Components
+Leverage React Server Components (RSC) to reduce bundle size.
 
-Use React Server Components and Next.js caching strategies effectively.
+> "RSCs are the future of React development." - Someone famous
 
-## 3. Optimize Images
+### Key Benefits:
+- **Smaller bundles**: No ship-to-client overhead.
+- **Better SEO**: Content is available to bots in the first frame.
+- **Faster initial load**: Less JS to parse.
 
-Always use the Next.js Image component for automatic optimization.
-
-## Conclusion
-
-Following these practices will help you build faster, more maintainable applications.`,
+Check out the [Next.js documentation](https://nextjs.org) for more.`,
                 tags: ["Next.js", "React", "Performance", "Best Practices"],
                 coverImage: "https://placehold.co/1200x630/png",
                 publishedAt: new Date("2024-01-15"),

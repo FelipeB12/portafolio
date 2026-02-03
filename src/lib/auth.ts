@@ -1,12 +1,11 @@
 
+import { auth } from "@/app/api/auth/[...nextauth]/route";
+
 /**
  * Get the current authenticated session
- * NOTE: This is a placeholder for next-auth@beta
- * In production, implement proper session retrieval
  */
-export async function getSession(): Promise<unknown> {
-    // TODO: Implement with next-auth@beta auth() function
-    return null;
+export async function getSession(): Promise<any> {
+    return await auth();
 }
 
 /**

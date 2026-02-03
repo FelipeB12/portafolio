@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   description: "Full-Stack Developer Portfolio",
 };
 
+import AppProviders from "@/providers/AppProviders";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,7 +30,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <AppProviders>{children}</AppProviders>
       </body>
     </html>
   );

@@ -1,8 +1,8 @@
 import { NextRequest } from "next/server";
 import connectDB from "@/lib/db";
 import BlogPost from "@/models/BlogPost";
-import { blogQuerySchema } from "@/schemas";
-import { apiResponse, apiError, handleApiError } from "@/lib/auth";
+import { apiResponse, apiError, handleApiError, requireAdmin } from "@/lib/auth";
+import { blogPostSchema, blogQuerySchema } from "@/schemas";
 
 /**
  * GET /api/blog
@@ -45,6 +45,32 @@ export async function GET(request: NextRequest) {
             limit: query.limit,
             skip: query.skip,
         });
+    } catch (error) {
+        return handleApiError(error);
+    }
+}
+
+/**
+ * POST /api/blog
+ * Protected endpoint - Create a new blog post
+ */
+export async function POST(request: NextRequest) {
+    try {
+        await requireAdmin();
+        await connectDB();
+
+        const body = await request.json();
+        const validatedData = blogPostSchema.parse(body);
+
+        // Check if slug already exists
+        const existingPost = await BlogPost.findOne({ slug: validatedData.slug });
+        if (existingPost) {
+            return apiError("A blog post with this slug already exists", 400);
+        }
+
+        const post = await BlogPost.create(validatedData);
+
+        return apiResponse(post, 201);
     } catch (error) {
         return handleApiError(error);
     }

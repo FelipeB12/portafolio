@@ -145,10 +145,10 @@ API documentation will be available at `/docs/API.md` (to be implemented).
 ## 🎯 Development Roadmap
 
 - [x] **Phase 1**: Project scaffold and tooling
-- [ ] **Phase 2**: Database models and MongoDB integration
-- [ ] **Phase 3**: NextAuth authentication
-- [ ] **Phase 4**: API routes (CRUD operations)
-- [ ] **Phase 5**: Public pages (Hero, Projects, Blog, Contact)
+- [x] **Phase 2**: Database models and MongoDB integration
+- [x] **Phase 3**: NextAuth authentication
+- [x] **Phase 4**: API routes (CRUD operations)
+- [x] **Phase 5**: Public pages (Hero, Projects, Blog, Contact)
 - [ ] **Phase 6**: Admin Dashboard
 - [ ] **Phase 7**: Integrations (Cloudinary, email, webhooks)
 
