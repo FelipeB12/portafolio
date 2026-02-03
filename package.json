@@ -13,18 +13,26 @@
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "type-check": "tsc --noEmit",
-    "seed": "tsx src/scripts/seed.ts"
+    "seed": "tsx --env-file=.env.local src/scripts/seed.ts"
   },
   "dependencies": {
+    "@auth/mongodb-adapter": "^3.11.1",
+    "bcryptjs": "^3.0.3",
+    "mongoose": "^9.1.5",
     "next": "16.1.6",
+    "next-auth": "^5.0.0-beta.30",
+    "nodemailer": "^7.0.13",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
+    "@types/nodemailer": "^7.0.9",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^5.1.3",
