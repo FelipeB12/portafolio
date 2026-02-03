@@ -94,7 +94,6 @@ const ProjectSchema = new Schema<IProject>(
 
 // Indexes
 ProjectSchema.index({ featured: 1 });
-ProjectSchema.index({ featured: 1 });
 ProjectSchema.index({ createdAt: -1 });
 
 const Project: Model<IProject> =

@@ -56,7 +56,6 @@ const BlogPostSchema = new Schema<IBlogPost>(
 
 // Indexes
 BlogPostSchema.index({ publishedAt: -1 });
-BlogPostSchema.index({ publishedAt: -1 });
 BlogPostSchema.index({ tags: 1 });
 
 // Virtual for published status
