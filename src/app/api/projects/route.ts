@@ -1,8 +1,8 @@
 import { NextRequest } from "next/server";
 import connectDB from "@/lib/db";
 import Project from "@/models/Project";
-import { projectQuerySchema } from "@/schemas";
-import { apiResponse, apiError, handleApiError } from "@/lib/auth";
+import { projectQuerySchema, projectSchema } from "@/schemas";
+import { apiResponse, apiError, handleApiError, requireAdmin } from "@/lib/auth";
 
 /**
  * GET /api/projects
@@ -38,6 +38,32 @@ export async function GET(request: NextRequest) {
             limit: query.limit,
             skip: query.skip,
         });
+    } catch (error) {
+        return handleApiError(error);
+    }
+}
+
+/**
+ * POST /api/projects
+ * Protected endpoint - Create a new project
+ */
+export async function POST(request: NextRequest) {
+    try {
+        await requireAdmin();
+        await connectDB();
+
+        const body = await request.json();
+        const validatedData = projectSchema.parse(body);
+
+        // Check if slug already exists
+        const existingProject = await Project.findOne({ slug: validatedData.slug });
+        if (existingProject) {
+            return apiError("A project with this slug already exists", 400);
+        }
+
+        const project = await Project.create(validatedData);
+
+        return apiResponse(project, 201);
     } catch (error) {
         return handleApiError(error);
     }
