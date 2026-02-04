@@ -1,0 +1,213 @@
+"use client";
+
+import { useState } from "react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { Send, Upload, CheckCircle, AlertCircle, Loader2, DollarSign } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+export default function ContactPage() {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [file, setFile] = useState<File | null>(null);
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setError(null);
+
+        const formData = new FormData(e.currentTarget);
+        if (file) {
+            formData.append("attachment", file);
+        }
+
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                body: formData,
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+                setIsSuccess(true);
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            } else {
+                setError(data.error || "Something went wrong. Please try again.");
+            }
+        } catch (err) {
+            setError("Failed to send message. Please check your connection.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    return (
+        <div className="flex flex-col min-h-screen">
+            <Navbar />
+
+            <main className="flex-grow pt-32 pb-24">
+                <div className="container max-w-6xl mx-auto px-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+                        {/* Left Column: Info */}
+                        <div className="space-y-12">
+                            <div className="space-y-6">
+                                <h1 className="text-6xl md:text-8xl font-bold tracking-tight">
+                                    Let's <span className="text-blue-600">talk.</span>
+                                </h1>
+                                <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-md">
+                                    Have a project in mind or just want to say hi? I'm always open to new opportunities and interesting collaborations.
+                                </p>
+                            </div>
+
+                            <div className="space-y-8">
+                                <div className="flex items-center gap-6 group">
+                                    <div className="w-14 h-14 bg-blue-50 dark:bg-blue-900/20 rounded-2xl flex items-center justify-center transition-colors group-hover:bg-blue-600 group-hover:text-white">
+                                        <Send size={24} className="text-blue-600 group-hover:text-white" />
+                                    </div>
+                                    <div>
+                                        <p className="text-sm text-gray-400 font-medium">Email me at</p>
+                                        <p className="text-xl font-bold">hello@felipe.dev</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right Column: Form */}
+                        <div className="relative">
+                            {isSuccess ? (
+                                <div className="bg-white dark:bg-gray-900 p-12 rounded-[3.5rem] border border-gray-100 dark:border-gray-800 shadow-2xl text-center space-y-6 animate-in fade-in zoom-in duration-500">
+                                    <div className="w-24 h-24 bg-green-50 dark:bg-green-900/10 rounded-full flex items-center justify-center mx-auto">
+                                        <CheckCircle className="text-green-500" size={48} />
+                                    </div>
+                                    <h2 className="text-3xl font-bold">Message Sent!</h2>
+                                    <p className="text-gray-500 text-lg">
+                                        Thank you for reaching out. I'll get back to you as soon as possible.
+                                    </p>
+                                    <button
+                                        onClick={() => setIsSuccess(false)}
+                                        className="px-8 py-4 bg-gray-100 dark:bg-gray-800 rounded-2xl font-bold hover:bg-gray-200 transition-all"
+                                    >
+                                        Send another message
+                                    </button>
+                                </div>
+                            ) : (
+                                <form
+                                    onSubmit={handleSubmit}
+                                    className="bg-white dark:bg-gray-900 p-10 md:p-12 rounded-[3.5rem] border border-gray-100 dark:border-gray-800 shadow-2xl space-y-8"
+                                >
+                                    {error && (
+                                        <div className="p-4 bg-red-50 dark:bg-red-900/10 text-red-600 rounded-2xl flex items-center gap-3 text-sm font-medium">
+                                            <AlertCircle size={18} />
+                                            {error}
+                                        </div>
+                                    )}
+
+                                    {/* Honeypot - Hidden from humans */}
+                                    <div className="hidden">
+                                        <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+                                    </div>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="space-y-2">
+                                            <label className="text-sm font-bold text-gray-500 ml-2">Name</label>
+                                            <input
+                                                required
+                                                name="name"
+                                                type="text"
+                                                placeholder="John Doe"
+                                                className="w-full px-6 py-4 bg-gray-50 dark:bg-gray-800 border-none rounded-2xl focus:ring-2 focus:ring-blue-500 transition-all outline-none"
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <label className="text-sm font-bold text-gray-500 ml-2">Email</label>
+                                            <input
+                                                required
+                                                name="email"
+                                                type="email"
+                                                placeholder="john@example.com"
+                                                className="w-full px-6 py-4 bg-gray-50 dark:bg-gray-800 border-none rounded-2xl focus:ring-2 focus:ring-blue-500 transition-all outline-none"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-bold text-gray-500 ml-2">Project Budget (Optional)</label>
+                                        <div className="relative">
+                                            <DollarSign className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                                            <select
+                                                name="projectBudget"
+                                                className="w-full pl-14 pr-6 py-4 bg-gray-50 dark:bg-gray-800 border-none rounded-2xl focus:ring-2 focus:ring-blue-500 transition-all outline-none appearance-none cursor-pointer"
+                                            >
+                                                <option value="">Less than $1k</option>
+                                                <option value="$1k - $5k">$1k - $5k</option>
+                                                <option value="$5k - $10k">$5k - $10k</option>
+                                                <option value="$10k+">$10k+</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-bold text-gray-500 ml-2">Message</label>
+                                        <textarea
+                                            required
+                                            name="message"
+                                            rows={5}
+                                            placeholder="Tell me about your project..."
+                                            className="w-full px-6 py-4 bg-gray-50 dark:bg-gray-800 border-none rounded-2xl focus:ring-2 focus:ring-blue-500 transition-all outline-none resize-none"
+                                        />
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-bold text-gray-500 ml-2">Attachment (Optional)</label>
+                                        <div className={cn(
+                                            "relative border-2 border-dashed border-gray-100 dark:border-gray-800 rounded-2xl p-6 transition-all hover:border-blue-400 group",
+                                            file ? "bg-blue-50/10 border-blue-500" : ""
+                                        )}>
+                                            <input
+                                                type="file"
+                                                onChange={(e) => setFile(e.target.files?.[0] || null)}
+                                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                            />
+                                            <div className="flex items-center gap-4">
+                                                <div className="w-12 h-12 bg-white dark:bg-gray-800 rounded-xl flex items-center justify-center shadow-sm">
+                                                    <Upload className={cn("text-gray-400 group-hover:text-blue-500", file ? "text-blue-500" : "")} size={20} />
+                                                </div>
+                                                <div>
+                                                    <p className="font-bold text-sm">{file ? file.name : "Choose a file"}</p>
+                                                    <p className="text-xs text-gray-400">PDF, JPG, PNG (Max 5MB)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button
+                                        disabled={isSubmitting}
+                                        type="submit"
+                                        className="w-full py-5 bg-blue-600 hover:bg-blue-700 text-white rounded-[2rem] font-bold text-lg transition-all shadow-xl shadow-blue-500/20 active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-3"
+                                    >
+                                        {isSubmitting ? (
+                                            <>
+                                                <Loader2 className="animate-spin" size={24} />
+                                                Sending...
+                                            </>
+                                        ) : (
+                                            <>
+                                                Send Message
+                                                <Send size={20} />
+                                            </>
+                                        )}
+                                    </button>
+                                </form>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <Footer />
+        </div>
+    );
+}

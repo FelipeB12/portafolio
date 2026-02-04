@@ -1,63 +1,51 @@
 import { NextRequest } from "next/server";
-import { apiResponse, apiError } from "@/lib/auth";
+import { apiResponse, apiError, handleApiError } from "@/lib/auth";
+import crypto from "crypto";
 
 /**
  * POST /api/webhooks/n8n
  * Webhook endpoint for n8n automation
- * Validates webhook secret
+ * Validates HMAC-SHA256 signature
  */
 export async function POST(request: NextRequest) {
     try {
-        // Verify webhook secret
-        const secret = request.headers.get("X-Webhook-Secret");
-        const expectedSecret = process.env.WEBHOOK_SECRET;
+        const payload = await request.json();
+        const signature = request.headers.get("x-webhook-signature");
+        const secret = process.env.WEBHOOK_SECRET;
 
-        if (!expectedSecret) {
-            return apiError("Webhook not configured", 503);
+        console.log("📥 [MOCK WEBHOOK] Received payload:", JSON.stringify(payload, null, 2));
+
+        if (secret) {
+            if (!signature) {
+                console.error("❌ [MOCK WEBHOOK] Missing signature header!");
+                return apiError("Missing signature", 401);
+            }
+
+            const expectedSignature = crypto
+                .createHmac("sha256", secret)
+                .update(JSON.stringify(payload))
+                .digest("hex");
+
+            if (signature !== expectedSignature) {
+                console.error("❌ [MOCK WEBHOOK] Invalid signature!");
+                console.error("Expected:", expectedSignature);
+                console.error("Received:", signature);
+                return apiError("Invalid signature", 401);
+            }
+            console.log("✅ [MOCK WEBHOOK] Signature verified!");
+        } else {
+            console.warn("⚠️ [MOCK WEBHOOK] WEBHOOK_SECRET not configured. Skipping verification.");
         }
 
-        if (secret !== expectedSecret) {
-            return apiError("Invalid webhook secret", 401);
-        }
-
-        const body = await request.json();
-
-        // Log the webhook payload
-        console.log("n8n webhook received:", {
-            type: body.type,
-            timestamp: new Date().toISOString(),
-        });
-
-        // Process webhook based on type
-        switch (body.type) {
-            case "contact_form":
-                // Handle contact form webhook
-                console.log("Contact form webhook:", body.data);
-                break;
-
-            case "project_created":
-            case "project_updated":
-            case "project_deleted":
-                // Handle project webhooks
-                console.log("Project webhook:", body.data);
-                break;
-
-            case "blog_published":
-                // Handle blog webhook
-                console.log("Blog webhook:", body.data);
-                break;
-
-            default:
-                console.log("Unknown webhook type:", body.type);
-        }
+        // Process based on type (for testing visibility)
+        console.log(`🚀 [MOCK WEBHOOK] Processing type: ${payload.type}`);
 
         return apiResponse({
             received: true,
-            type: body.type,
-            timestamp: new Date().toISOString(),
+            type: payload.type,
+            verified: !!secret
         });
     } catch (error) {
-        console.error("Webhook error:", error);
-        return apiError("Webhook processing failed", 500);
+        return handleApiError(error);
     }
 }
