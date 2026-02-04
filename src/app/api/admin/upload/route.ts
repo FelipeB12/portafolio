@@ -5,6 +5,7 @@ import {
     apiError,
     handleApiError,
 } from "@/lib/auth";
+import { uploadFile } from "@/lib/upload";
 
 /**
  * POST /api/admin/upload
@@ -41,24 +42,10 @@ export async function POST(request: NextRequest) {
             return apiError("File size exceeds 10MB limit", 400);
         }
 
-        // In development, use local storage fallback
-        if (process.env.NODE_ENV === "development" && !process.env.CLOUDINARY_URL) {
-            // TODO: Implement local file storage
-            return apiResponse({
-                url: `/uploads/${file.name}`,
-                publicId: file.name,
-                message: "Local upload (Cloudinary not configured)",
-            });
-        }
+        // Use the common upload utility
+        const result = await uploadFile(file);
 
-        // Production: Upload to Cloudinary
-        // TODO: Implement Cloudinary upload
-        // For now, return a placeholder
-        return apiResponse({
-            url: "https://placeholder.cloudinary.url/" + file.name,
-            publicId: "placeholder-" + file.name,
-            message: "Cloudinary upload not yet implemented",
-        });
+        return apiResponse(result);
     } catch (error) {
         return handleApiError(error);
     }
