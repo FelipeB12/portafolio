@@ -4,33 +4,37 @@ import ProjectEditor from "@/components/ProjectEditor";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function ProjectEditorWrapper({ project }: { project: any }) {
+export default function NewProjectPage() {
     const router = useRouter();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleSave = async (data: any) => {
         setIsSubmitting(true);
         try {
-            const res = await fetch(`/api/projects/${project.slug}`, {
-                method: "PUT",
+            const res = await fetch("/api/projects", {
+                method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
             });
 
             const json = await res.json();
             if (json.success) {
-                router.push("/admin/projects");
+                router.push("/dashboard/projects");
                 router.refresh();
             } else {
-                alert("Error updating project: " + json.error);
+                alert("Error saving project: " + json.error);
             }
         } catch (error) {
-            console.error("Update error:", error);
-            alert("Failed to update project");
+            console.error("Save error:", error);
+            alert("Failed to save project");
         } finally {
             setIsSubmitting(false);
         }
     };
 
-    return <ProjectEditor initialData={project} onSave={handleSave} isSubmitting={isSubmitting} />;
+    return (
+        <div className="max-w-7xl mx-auto">
+            <ProjectEditor onSave={handleSave} isSubmitting={isSubmitting} />
+        </div>
+    );
 }

@@ -19,7 +19,7 @@ export default function BlogEditorWrapper({ post }: { post: any }) {
 
             const json = await res.json();
             if (json.success) {
-                router.push("/admin/blog");
+                router.push("/dashboard/blog");
                 router.refresh();
             } else {
                 alert("Error updating post: " + json.error);

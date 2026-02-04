@@ -5,8 +5,8 @@ import { getToken } from "next-auth/jwt";
 export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
-    // Protect /admin routes and /api/admin routes
-    if (pathname.startsWith("/admin") || pathname.startsWith("/api/admin")) {
+    // Protect /dashboard routes and /api/admin routes
+    if (pathname.startsWith("/dashboard") || pathname.startsWith("/api/admin")) {
         const token = await getToken({
             req: request,
             secret: process.env.NEXTAUTH_SECRET,
@@ -20,7 +20,7 @@ export async function middleware(request: NextRequest) {
                     { status: 401 }
                 );
             }
-            // Redirect to sign-in for admin pages
+            // Redirect to sign-in for dashboard pages
             const signInUrl = new URL("/auth/signin", request.url);
             signInUrl.searchParams.set("callbackUrl", pathname);
             return NextResponse.redirect(signInUrl);
@@ -34,7 +34,7 @@ export async function middleware(request: NextRequest) {
                     { status: 403 }
                 );
             }
-            // Redirect to home for admin pages
+            // Redirect to home for dashboard pages
             return NextResponse.redirect(new URL("/", request.url));
         }
     }
@@ -43,5 +43,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: ["/admin/:path*", "/api/admin/:path*"],
+    matcher: ["/dashboard/:path*", "/api/admin/:path*"],
 };

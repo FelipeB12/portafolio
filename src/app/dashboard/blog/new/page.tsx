@@ -19,7 +19,7 @@ export default function NewBlogPostPage() {
 
             const json = await res.json();
             if (json.success) {
-                router.push("/admin/blog");
+                router.push("/dashboard/blog");
                 router.refresh();
             } else {
                 alert("Error saving post: " + json.error);

@@ -4,6 +4,8 @@ import { useState, useRef } from "react";
 import { Upload, X, Plus, Trash2, Image as ImageIcon, ExternalLink, Github, Monitor, Target, Lightbulb, User, Code, ListChecks } from "lucide-react";
 import { cn } from "@/lib/utils";
 import slugify from "slugify";
+import { toast } from "react-hot-toast";
+
 
 interface ProjectEditorProps {
     initialData?: any;
@@ -70,9 +72,13 @@ export default function ProjectEditor({ initialData, onSave, isSubmitting }: Pro
                 const data = await res.json();
                 if (data.success) {
                     setScreenshots((prev) => [...prev, { url: data.data.url, alt: title + " Screenshot" }]);
+                    toast.success("Image uploaded!");
+                } else {
+                    toast.error(data.error || "Upload failed");
                 }
             } catch (error) {
                 console.error("Upload failed", error);
+                toast.error("Upload failed");
             }
         }
         setIsUploading(false);
