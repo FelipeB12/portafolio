@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 const readline = require('readline');
 
 const rl = readline.createInterface({
@@ -13,19 +13,40 @@ async function promote() {
     try {
         await client.connect();
         console.log("Connected to MongoDB");
-        const db = client.db('portafolio'); // Ensure this matches your DB name
+
+        const db = client.db('test');
         const users = db.collection('users');
 
-        rl.question('Enter the email of the user to promote to admin: ', async (email) => {
-            const result = await users.updateOne(
-                { email: email },
-                { $set: { role: 'admin' } }
-            );
+        rl.question('Enter the email OR the User ID (from logs) to promote to admin: ', async (rawInput) => {
+            const input = rawInput.trim();
+            let query = { email: input };
 
-            if (result.matchedCount === 0) {
-                console.log(`No user found with email: ${email}`);
+            // Check if input looks like a MongoDB ObjectId (24 hex characters)
+            if (input.match(/^[0-9a-fA-F]{24}$/)) {
+                try {
+                    query = { _id: new ObjectId(input) };
+                } catch (e) {
+                    // Not a valid ObjectId format despite regex
+                }
+            }
+
+            const user = await users.findOne(query);
+
+            if (!user) {
+                console.log(`\n❌ No user found with: ${input}`);
+                console.log("Registered users in this DB:");
+                const allUsers = await users.find({}).limit(10).toArray();
+                if (allUsers.length === 0) {
+                    console.log(" (The 'users' collection is currently empty)");
+                } else {
+                    allUsers.forEach(u => console.log(` - ID: ${u._id} | Email: ${u.email || 'N/A'} | Name: ${u.name}`));
+                }
             } else {
-                console.log(`Successfully promoted ${email} to admin!`);
+                await users.updateOne(
+                    { _id: user._id },
+                    { $set: { role: 'admin' } }
+                );
+                console.log(`✅ Successfully promoted ${user.name || input} to admin!`);
             }
 
             await client.close();

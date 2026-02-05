@@ -24,25 +24,36 @@ export const authOptions: NextAuthConfig = {
         GithubProvider({
             clientId: process.env.GITHUB_ID || "",
             clientSecret: process.env.GITHUB_SECRET || "",
+            authorization: {
+                params: {
+                    scope: "read:user user:email",
+                },
+            },
         }),
     ],
     callbacks: {
-        async session({ session, user }: any) {
-            if (session.user) {
-                // Connect to DB and fetch user role
-                await connectDB();
-                const dbUser = await User.findOne({ email: session.user.email });
-
-                session.user.id = user.id;
-                session.user.role = dbUser?.role || "viewer";
+        async session({ session, token }: any) {
+            console.log("Session Callback - Token:", token);
+            if (session.user && token) {
+                session.user.id = token.id as string;
+                session.user.role = token.role as "admin" | "editor" | "viewer";
             }
+            console.log("Session Callback - Final Session:", session);
             return session;
         },
-        async jwt({ token, user }: any) {
+        async jwt({ token, user, trigger, session }: any) {
+            console.log("JWT Callback - User:", user);
             if (user) {
                 token.id = user.id;
                 token.role = user.role || "viewer";
             }
+
+            // Handle manual role updates if needed
+            if (trigger === "update" && session?.role) {
+                token.role = session.role;
+            }
+
+            console.log("JWT Callback - Final Token:", token);
             return token;
         },
     },
@@ -51,7 +62,7 @@ export const authOptions: NextAuthConfig = {
         error: "/auth/error",
     },
     session: {
-        strategy: "database",
+        strategy: "jwt",
     },
     secret: process.env.NEXTAUTH_SECRET,
 };
