@@ -1,12 +1,22 @@
 const { MongoClient, ObjectId } = require('mongodb');
 const readline = require('readline');
 
+// To run this script securely: 
+// node --env-file=.env.local scripts/promote-admin.js
+
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
-const uri = "mongodb+srv://felipeb12:aroU4gXOhXRmvWID@cluster0.qalexb1.mongodb.net/?appName=Cluster0";
+const uri = process.env.MONGODB_URI;
+
+if (!uri) {
+    console.error("❌ MONGODB_URI not found in environment.");
+    console.log("Tip: Run the script with: node --env-file=.env.local scripts/promote-admin.js");
+    process.exit(1);
+}
+
 const client = new MongoClient(uri);
 
 async function promote() {

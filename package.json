@@ -13,7 +13,8 @@
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "type-check": "tsc --noEmit",
-    "seed": "tsx --env-file=.env.local src/scripts/seed.ts"
+    "seed": "tsx --env-file=.env.local src/scripts/seed.ts",
+    "promote-admin": "node --env-file=.env.local scripts/promote-admin.js"
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^3.11.1",

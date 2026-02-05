@@ -6,10 +6,10 @@ A production-ready portfolio website built with Next.js, TypeScript, MongoDB, an
 
 - **Frontend & Backend**: Next.js 14+ (App Router) with TypeScript
 - **Styling**: Tailwind CSS 4
-- **Database**: MongoDB with Mongoose (to be implemented)
-- **Authentication**: NextAuth.js with email + GitHub OAuth (to be implemented)
-- **File Storage**: Cloudinary for images and CV PDFs (to be implemented)
-- **Markdown**: remark + rehype for blog content (to be implemented)
+- **Database**: MongoDB with Mongoose 
+- **Authentication**: NextAuth.js with email + GitHub OAuth 
+- **File Storage**: Cloudinary for images and CV PDFs 
+- **Markdown**: remark + rehype for blog content 
 - **Testing**: Vitest + Testing Library
 - **Code Quality**: ESLint + Prettier + TypeScript strict mode
 - **CI/CD**: GitHub Actions → Vercel
@@ -17,9 +17,9 @@ A production-ready portfolio website built with Next.js, TypeScript, MongoDB, an
 ## 📋 Prerequisites
 
 - Node.js 20+ and npm
-- MongoDB instance (local or Atlas)
-- Cloudinary account (for file uploads)
-- GitHub OAuth app (for authentication)
+- MongoDB instance
+- Cloudinary account
+- GitHub OAuth app
 
 ## 🛠️ Local Development Setup
 
@@ -41,7 +41,7 @@ cp .env.example .env.local
 
 Required variables:
 - `MONGODB_URI` - Your MongoDB connection string
-- `NEXTAUTH_SECRET` - Generate with: `openssl rand -base64 32`
+- `NEXTAUTH_SECRET` - Generate with: `any long string`
 - `NEXTAUTH_URL` - `http://localhost:3000` for local dev
 - `CLOUDINARY_*` - Your Cloudinary credentials
 - `GITHUB_ID` / `GITHUB_SECRET` - GitHub OAuth app credentials
@@ -91,75 +91,46 @@ portafolio/
 └── .github/workflows/    # CI/CD workflows
 ```
 
-## 🔐 Authentication
+## 🔐 Authentication & Administration
 
-The Admin Dashboard requires authentication. Only users with `role: "admin"` can access CRUD operations.
+The Admin Dashboard is protected by NextAuth with role-based access.
 
-**Creating the first admin user:**
-```bash
-npm run create-admin  # (to be implemented)
-```
+### 1. Create your Admin Account
+1.  Navigate to `/auth/signin` and log in with your GitHub or Email.
+2.  Your account will be created as a `viewer` by default.
+3.  Promote yourself to Admin using the CLI:
+    ```bash
+    # Use the email you used to log in
+    npm run promote-admin <email>
+    
+    # OR use your ID if your email is private/null
+    npm run promote-admin <id>
+    ```
 
-Or manually add to MongoDB:
-```javascript
-db.users.updateOne(
-  { email: "your-email@example.com" },
-  { $set: { role: "admin" } }
-)
-```
+### 2. Manage Content
+Once promoted, navigate to `/dashboard` to manage:
+- **Projects**: CRUD case studies with Cloudinary images.
+- **Blog**: Write technical posts using Markdown.
+- **CV**: Upload PDFs that update globally.
+- **Contact**: View and manage inquiries.
 
 ## 🧪 Testing
 
-Run tests:
 ```bash
-npm run test
-```
-
-Run tests with UI:
-```bash
-npm run test:ui
+npm run test        # Unit tests
+npm run type-check  # Type safety
 ```
 
 ## 🚢 Deployment
 
-### Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Import project in Vercel
-3. Add environment variables in Vercel dashboard
-4. Deploy!
-
-Vercel will automatically:
-- Create preview deployments for PRs
-- Deploy to production on merge to `main`
-- Run build checks via GitHub Actions
-
-### Environment Variables in Vercel
-
-Add all variables from `.env.example` in your Vercel project settings.
-
-## 📚 API Documentation
-
-API documentation will be available at `/docs/API.md` (to be implemented).
-
-## 🎯 Development Roadmap
-
-- [x] **Phase 1**: Project scaffold and tooling
-- [x] **Phase 2**: Database models and MongoDB integration
-- [x] **Phase 3**: NextAuth authentication
-- [x] **Phase 4**: API routes (CRUD operations)
-- [x] **Phase 5**: Public pages (Hero, Projects, Blog, Contact)
-- [ ] **Phase 6**: Admin Dashboard
-- [ ] **Phase 7**: Integrations (Cloudinary, email, webhooks)
-
-## 📝 License
-
-MIT
+1.  **Environment Variables**: Ensure all variables from `.env.example` are set in your provider (e.g., Vercel).
+2.  **Database**: Ensure your MongoDB IP whitelist allows the deployment server.
+3.  **Authentication**: Update your GitHub OAuth callback URL to provide the production domain.
 
 ## 👤 Author
 
-Felipe B - Full-Stack Developer
+Juan Beltran - Full-Stack Developer
 
 ---
 
-**Status**: 🚧 Phase 1 Complete - Project scaffold ready for development
+**Status**: ✅ Complete - Production-ready portfolio with unified Admin Dashboard.
