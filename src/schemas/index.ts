@@ -95,6 +95,7 @@ export const cvSchema = z.object({
 export const projectQuerySchema = z.object({
     featured: z
         .string()
+        .nullable()
         .optional()
         .transform((val) => val === "true"),
     limit: z.coerce.number().positive().max(100).optional().default(20),
@@ -102,9 +103,10 @@ export const projectQuerySchema = z.object({
 });
 
 export const blogQuerySchema = z.object({
-    tag: z.string().optional(),
+    tag: z.string().nullable().optional(),
     published: z
         .string()
+        .nullable()
         .optional()
         .transform((val) => val !== "false"),
     limit: z.coerce.number().positive().max(100).optional().default(20),

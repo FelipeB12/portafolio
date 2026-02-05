@@ -1,5 +1,5 @@
 export const siteConfig = {
-    name: "Felipe",
+    name: "Juan",
     title: "Full-Stack Developer & Software Engineer",
     description:
         "Building modern, scalable, and user-centric web applications with Next.js, TypeScript, and MongoDB.",

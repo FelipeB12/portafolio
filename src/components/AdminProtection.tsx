@@ -10,7 +10,7 @@ export default function AdminProtection({ children }: { children: React.ReactNod
 
     useEffect(() => {
         if (status === "unauthenticated") {
-            router.push("/api/auth/signin?callbackUrl=/admin");
+            router.push("/auth/signin?callbackUrl=/dashboard");
         } else if (session?.user?.role !== "admin" && status === "authenticated") {
             router.push("/");
         }
