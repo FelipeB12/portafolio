@@ -3,21 +3,35 @@ import fs from "fs/promises";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
 
-// Configure Cloudinary
-if (process.env.CLOUDINARY_URL) {
-    cloudinary.config({
-        cloudinary_url: process.env.CLOUDINARY_URL,
-    });
-} else if (
-    process.env.CLOUDINARY_CLOUD_NAME &&
-    process.env.CLOUDINARY_API_KEY &&
-    process.env.CLOUDINARY_API_SECRET
-) {
-    cloudinary.config({
-        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-        api_key: process.env.CLOUDINARY_API_KEY,
-        api_secret: process.env.CLOUDINARY_API_SECRET,
-    });
+// Lazy configuration function to prevent top-level crashes
+function configureCloudinary() {
+    try {
+        let url = process.env.CLOUDINARY_URL;
+
+        // Handle common copy-paste error: "CLOUDINARY_URL=CLOUDINARY_URL=..."
+        if (url && url.startsWith("CLOUDINARY_URL=")) {
+            url = url.replace("CLOUDINARY_URL=", "");
+        }
+
+        if (url) {
+            if (!url.startsWith("cloudinary://")) {
+                throw new Error("Invalid CLOUDINARY_URL protocol. Must start with 'cloudinary://'");
+            }
+        } else if (
+            process.env.CLOUDINARY_CLOUD_NAME &&
+            process.env.CLOUDINARY_API_KEY &&
+            process.env.CLOUDINARY_API_SECRET
+        ) {
+            cloudinary.config({
+                cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+                api_key: process.env.CLOUDINARY_API_KEY,
+                api_secret: process.env.CLOUDINARY_API_SECRET,
+                secure: true,
+            });
+        }
+    } catch (error: any) {
+        console.error("❌ Cloudinary Config Error:", error.message);
+    }
 }
 
 /**
@@ -37,8 +51,12 @@ export async function uploadFile(
 
     // If in development and Cloudinary is NOT configured, use local storage
     if (!isCloudinaryConfigured && process.env.NODE_ENV === "development") {
+        console.warn("⚠️ Cloudinary not configured. Falling back to local storage.");
         return uploadLocal(file);
     }
+
+    // Ensure Cloudinary is configured before attempting upload
+    configureCloudinary();
 
     // Production or if Cloudinary is configured: Upload to Cloudinary
     return uploadToCloudinary(file, folder);
@@ -55,6 +73,12 @@ async function uploadToCloudinary(
     const buffer = Buffer.from(arrayBuffer);
 
     return new Promise((resolve, reject) => {
+        // Double check configuration before calling SDK
+        const config = cloudinary.config();
+        if (!config.cloud_name && !process.env.CLOUDINARY_URL) {
+            return reject(new Error("Cloudinary is not correctly configured. Please check your CLOUDINARY_URL format. It should start with 'cloudinary://'"));
+        }
+
         const uploadStream = cloudinary.uploader.upload_stream(
             {
                 folder,
