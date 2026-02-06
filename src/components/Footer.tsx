@@ -10,8 +10,8 @@ export default function Footer() {
             <div className="container max-w-7xl mx-auto px-4 py-12">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                     <div className="col-span-1 md:col-span-2">
-                        <Link href="/" className="text-2xl font-bold tracking-tighter mb-4 block">
-                            {siteConfig.name}
+                        <Link href="/" className="text-2xl font-black tracking-tighter mb-4 block uppercase font-display">
+                            {siteConfig.name}<span className="text-brand-red">.</span>
                         </Link>
                         <p className="text-gray-600 dark:text-gray-400 max-w-sm mb-6">
                             {siteConfig.description}
@@ -21,7 +21,7 @@ export default function Footer() {
                                 href={siteConfig.links.github}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="p-2 text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors"
+                                className="p-2 text-muted-text hover:text-brand-red transition-colors"
                                 aria-label="GitHub"
                             >
                                 <Github size={20} />
@@ -30,14 +30,14 @@ export default function Footer() {
                                 href={siteConfig.links.linkedin}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="p-2 text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors"
+                                className="p-2 text-muted-text hover:text-brand-red transition-colors"
                                 aria-label="LinkedIn"
                             >
                                 <Linkedin size={20} />
                             </a>
                             <a
                                 href={`mailto:${siteConfig.links.email}`}
-                                className="p-2 text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors"
+                                className="p-2 text-muted-text hover:text-brand-red transition-colors"
                                 aria-label="Email"
                             >
                                 <Mail size={20} />
@@ -49,16 +49,16 @@ export default function Footer() {
                         <h3 className="font-semibold mb-4 uppercase text-xs tracking-widest text-gray-400">Navigation</h3>
                         <ul className="space-y-2">
                             <li>
-                                <Link href="/" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Home</Link>
+                                <Link href="/" className="text-muted-text hover:text-brand-red transition-colors font-medium text-sm">Home</Link>
                             </li>
                             <li>
-                                <Link href="/projects" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Projects</Link>
+                                <Link href="/projects" className="text-muted-text hover:text-brand-red transition-colors font-medium text-sm">Projects</Link>
                             </li>
                             <li>
-                                <Link href="/blog" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Blog</Link>
+                                <Link href="/blog" className="text-muted-text hover:text-brand-red transition-colors font-medium text-sm">Blog</Link>
                             </li>
                             <li>
-                                <Link href="/contact" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact</Link>
+                                <Link href="/contact" className="text-muted-text hover:text-brand-red transition-colors font-medium text-sm">Contact</Link>
                             </li>
                         </ul>
                     </div>
@@ -67,10 +67,10 @@ export default function Footer() {
                         <h3 className="font-semibold mb-4 uppercase text-xs tracking-widest text-gray-400">Legal</h3>
                         <ul className="space-y-2">
                             <li>
-                                <Link href="/privacy" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Privacy Policy</Link>
+                                <Link href="/privacy" className="text-muted-text hover:text-brand-red transition-colors font-medium text-sm">Privacy Policy</Link>
                             </li>
                             <li>
-                                <Link href="/terms" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Terms of Service</Link>
+                                <Link href="/terms" className="text-muted-text hover:text-brand-red transition-colors font-medium text-sm">Terms of Service</Link>
                             </li>
                         </ul>
                     </div>

@@ -34,7 +34,7 @@ export default function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                                 href={project.liveLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 text-white rounded-2xl font-bold hover:bg-blue-700 transition-all shadow-xl shadow-blue-500/20"
+                                className="inline-flex items-center gap-2 px-8 py-4 bg-brand-red text-white rounded-[2rem] font-black uppercase tracking-widest text-sm hover:bg-brand-red-hover transition-all shadow-xl shadow-brand-red/20"
                             >
                                 Live Demo <ArrowUpRight size={20} />
                             </a>
@@ -94,7 +94,7 @@ export default function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                 <div className="space-y-16">
                     <section className="space-y-6">
                         <h2 className="text-3xl font-bold flex items-center gap-3">
-                            <User className="text-blue-500" />
+                            <User className="text-brand-red" />
                             My Role
                         </h2>
                         <div className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -122,16 +122,16 @@ export default function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             </div>
 
             {/* Key Decisions */}
-            <section className="p-12 bg-blue-50 dark:bg-blue-900/10 rounded-[3rem] border border-blue-100 dark:border-blue-900/20 space-y-8">
-                <h2 className="text-3xl font-bold flex items-center gap-3">
-                    <CheckCircle2 className="text-blue-600" />
+            <section className="p-12 bg-brand-red/5 rounded-[3rem] border border-brand-red/10 space-y-8">
+                <h2 className="text-3xl font-black uppercase font-display tracking-tight flex items-center gap-3">
+                    <CheckCircle2 className="text-brand-gold" />
                     Key Decisions
                 </h2>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {project.keyDecisions.map((decision, index) => (
                         <li key={index} className="flex gap-4 group">
-                            <div className="w-6 h-6 rounded-full bg-blue-600/10 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-600 transition-colors">
-                                <span className="text-xs font-bold text-blue-600 group-hover:text-white">{index + 1}</span>
+                            <div className="w-8 h-8 rounded-full bg-brand-red/10 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-red transition-colors border border-brand-red/20">
+                                <span className="text-xs font-black text-brand-red group-hover:text-white">{index + 1}</span>
                             </div>
                             <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                                 {decision}

@@ -17,7 +17,7 @@ export default function SettingsPage() {
     return (
         <div className="space-y-12 pb-20">
             <header>
-                <h1 className="text-4xl font-black tracking-tight">System <span className="text-blue-600">Settings</span></h1>
+                <h1 className="text-4xl font-black tracking-tight uppercase font-display">System <span className="text-brand-red">Settings</span></h1>
                 <p className="text-gray-500 mt-1">Manage your administrative preferences and site configuration.</p>
             </header>
 
@@ -33,8 +33,8 @@ export default function SettingsPage() {
                         <button
                             key={tab.id}
                             className={`w-full flex items-center gap-3 px-6 py-4 rounded-2xl font-bold transition-all ${tab.active
-                                    ? "bg-blue-600 text-white shadow-lg shadow-blue-500/20"
-                                    : "text-gray-500 hover:bg-white dark:hover:bg-gray-800"
+                                ? "bg-brand-red text-white shadow-lg shadow-brand-red/20"
+                                : "text-muted-text hover:bg-card border border-transparent hover:border-border"
                                 }`}
                         >
                             <tab.icon size={18} />
@@ -48,7 +48,7 @@ export default function SettingsPage() {
 
                     <section className="space-y-8">
                         <h2 className="text-2xl font-bold flex items-center gap-3">
-                            <User className="text-blue-600" />
+                            <User className="text-brand-red" />
                             Public Profile
                         </h2>
 
@@ -58,7 +58,7 @@ export default function SettingsPage() {
                                 <input
                                     type="text"
                                     defaultValue="Felipe"
-                                    className="w-full px-6 py-4 bg-gray-50 dark:bg-gray-800 border-none rounded-2xl focus:ring-2 focus:ring-blue-500 transition-all outline-none"
+                                    className="w-full px-6 py-4 bg-card border-border rounded-2xl focus:ring-2 focus:ring-brand-red/50 transition-all outline-none border"
                                 />
                             </div>
                             <div className="space-y-2">
@@ -66,7 +66,7 @@ export default function SettingsPage() {
                                 <input
                                     type="email"
                                     defaultValue="hello@felipe.dev"
-                                    className="w-full px-6 py-4 bg-gray-50 dark:bg-gray-800 border-none rounded-2xl focus:ring-2 focus:ring-blue-500 transition-all outline-none"
+                                    className="w-full px-6 py-4 bg-card border-border rounded-2xl focus:ring-2 focus:ring-brand-red/50 transition-all outline-none border"
                                 />
                             </div>
                         </div>
@@ -76,7 +76,7 @@ export default function SettingsPage() {
                             <textarea
                                 rows={3}
                                 defaultValue="Product Designer & Full-stack Developer based in Colombia."
-                                className="w-full px-6 py-4 bg-gray-50 dark:bg-gray-800 border-none rounded-2xl focus:ring-2 focus:ring-blue-500 transition-all outline-none resize-none"
+                                className="w-full px-6 py-4 bg-card border-border rounded-2xl focus:ring-2 focus:ring-brand-red/50 transition-all outline-none resize-none border"
                             />
                         </div>
                     </section>
@@ -85,12 +85,12 @@ export default function SettingsPage() {
 
                     <section className="space-y-8">
                         <h2 className="text-2xl font-bold flex items-center gap-3">
-                            <Shield className="text-blue-600" />
+                            <Shield className="text-brand-gold" />
                             Webhook Security
                         </h2>
 
-                        <div className="p-8 bg-blue-50/50 dark:bg-blue-900/10 rounded-[2.5rem] border border-blue-100/50 dark:border-blue-900/20 space-y-4">
-                            <p className="text-sm text-blue-900/80 dark:text-blue-100/80 font-medium leading-relaxed">
+                        <div className="p-8 bg-brand-red/5 rounded-[2.5rem] border border-brand-red/20 space-y-4">
+                            <p className="text-sm text-brand-red/80 dark:text-red-100/80 font-medium leading-relaxed">
                                 Your webhook secret is used to sign payloads sent to n8n. If compromised, you can regenerate it here.
                             </p>
                             <div className="flex gap-4">
@@ -100,7 +100,7 @@ export default function SettingsPage() {
                                     readOnly
                                     className="flex-grow px-6 py-4 bg-white dark:bg-gray-900 border-none rounded-2xl text-sm"
                                 />
-                                <button className="px-6 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-2xl font-bold text-sm hover:opacity-90">
+                                <button className="px-6 py-4 bg-brand-red text-white rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-brand-red-hover shadow-lg shadow-brand-red/20">
                                     Regenerate
                                 </button>
                             </div>
@@ -111,7 +111,7 @@ export default function SettingsPage() {
                         <button
                             onClick={handleSave}
                             disabled={isSaving}
-                            className="px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white rounded-[2rem] font-bold text-lg transition-all shadow-xl shadow-blue-500/20 flex items-center gap-3 disabled:opacity-50"
+                            className="px-10 py-5 bg-brand-red hover:bg-brand-red-hover text-white rounded-[2rem] font-black uppercase tracking-widest text-sm transition-all shadow-xl shadow-brand-red/20 flex items-center gap-3 disabled:opacity-50"
                         >
                             {isSaving ? "Saving..." : "Save Settings"}
                             <Save size={20} />

@@ -19,9 +19,11 @@ export default function TechStack() {
         <section className="py-24 bg-white dark:bg-gray-900 overflow-hidden">
             <div className="container max-w-7xl mx-auto px-4">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Technical Arsenal</h2>
-                    <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                        My primary stack for building high-performance, scalable web applications.
+                    <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tighter uppercase font-display">
+                        Technical <span className="text-brand-red">Arsenal</span>
+                    </h2>
+                    <p className="text-muted-text max-w-2xl mx-auto font-medium">
+                        Standardized tools for high-performance, logical engineering.
                     </p>
                 </div>
 
@@ -35,15 +37,15 @@ export default function TechStack() {
                             transition={{ duration: 0.3, delay: index * 0.05 }}
                             className="flex flex-col items-center group"
                         >
-                            <div className="w-16 h-16 mb-4 p-3 bg-gray-50 dark:bg-gray-800 rounded-2xl flex items-center justify-center grayscale group-hover:grayscale-0 group-hover:bg-blue-50 dark:group-hover:bg-blue-900/20 transition-all duration-300">
+                            <div className="relative w-16 h-16 mb-4 p-3 bg-card rounded-2xl flex items-center justify-center grayscale group-hover:grayscale-0 group-hover:bg-brand-gold/10 group-hover:border-brand-gold/50 border border-border transition-all duration-300">
                                 <img
                                     src={skill.icon}
                                     alt={skill.name}
-                                    className="w-10 h-10 object-contain"
+                                    className="w-10 h-10 object-contain z-10"
                                     loading="lazy"
                                 />
                             </div>
-                            <span className="text-sm font-medium text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            <span className="text-xs font-black uppercase tracking-widest text-muted-text group-hover:text-brand-red transition-colors">
                                 {skill.name}
                             </span>
                         </motion.div>

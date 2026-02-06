@@ -70,10 +70,10 @@ export default function AdminContactMessagesPage() {
 
     return (
         <div className="space-y-8">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white dark:bg-gray-900 p-8 rounded-[2.5rem] border border-gray-100 dark:border-gray-800 shadow-sm">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-card p-8 rounded-[2.5rem] border border-border shadow-sm">
                 <div>
-                    <h1 className="text-3xl font-bold">Contact Messages</h1>
-                    <p className="text-gray-500">Manage inquiries from your portfolio.</p>
+                    <h1 className="text-3xl font-black uppercase font-display tracking-tight">Contact <span className="text-brand-red">Messages</span></h1>
+                    <p className="text-gray-500 font-medium">Manage inquiries from your portfolio.</p>
                 </div>
 
                 <div className="flex bg-gray-50 dark:bg-gray-800 p-1.5 rounded-2xl">
@@ -84,8 +84,8 @@ export default function AdminContactMessagesPage() {
                             className={cn(
                                 "px-6 py-2.5 rounded-xl text-sm font-bold capitalize transition-all",
                                 filter === t
-                                    ? "bg-white dark:bg-gray-700 text-blue-600 shadow-sm"
-                                    : "text-gray-500 hover:text-gray-700"
+                                    ? "bg-brand-red text-white shadow-lg shadow-brand-red/20"
+                                    : "text-muted-text hover:text-gray-900 dark:hover:text-white"
                             )}
                         >
                             {t}
@@ -104,14 +104,14 @@ export default function AdminContactMessagesPage() {
                             placeholder="Search messages..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            className="w-full pl-12 pr-6 py-4 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition-all shadow-sm"
+                            className="w-full pl-12 pr-6 py-4 bg-card border-border rounded-2xl focus:ring-2 focus:ring-brand-red/50 outline-none transition-all shadow-sm border"
                         />
                     </div>
 
                     <div className="space-y-3 h-[calc(100vh-400px)] overflow-y-auto pr-2 custom-scrollbar">
                         {isLoading ? (
                             <div className="flex items-center justify-center py-20">
-                                <Loader2 className="animate-spin text-blue-600" size={32} />
+                                <Loader2 className="animate-spin text-brand-red" size={32} />
                             </div>
                         ) : filteredMessages.length > 0 ? (
                             filteredMessages.map((msg) => (
@@ -121,12 +121,12 @@ export default function AdminContactMessagesPage() {
                                     className={cn(
                                         "w-full text-left p-6 rounded-3xl border transition-all relative group",
                                         selectedMessage?._id === msg._id
-                                            ? "bg-blue-50/50 border-blue-200 dark:bg-blue-900/10 dark:border-blue-900/30"
-                                            : "bg-white dark:bg-gray-900 border-gray-100 dark:border-gray-800 hover:border-blue-200"
+                                            ? "bg-brand-red/5 border-brand-red"
+                                            : "bg-card border-border hover:border-brand-red/30"
                                     )}
                                 >
                                     {!msg.processed && (
-                                        <div className="absolute top-6 right-6 w-2 h-2 bg-blue-600 rounded-full shadow-[0_0_10px_rgba(37,99,235,0.5)]" />
+                                        <div className="absolute top-6 right-6 w-2 h-2 bg-brand-red rounded-full shadow-[0_0_10px_rgba(196,30,58,0.5)] animate-pulse" />
                                     )}
                                     <div className="flex items-center gap-4 mb-3">
                                         <div className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-xl flex items-center justify-center font-bold text-gray-400">
@@ -157,7 +157,7 @@ export default function AdminContactMessagesPage() {
                         <div className="bg-white dark:bg-gray-900 rounded-[3.5rem] border border-gray-100 dark:border-gray-800 shadow-xl overflow-hidden animate-in fade-in slide-in-from-right-4 duration-300">
                             <div className="p-8 border-b border-gray-100 dark:border-gray-800 flex justify-between items-center bg-gray-50/50 dark:bg-gray-800/10">
                                 <div className="flex items-center gap-4">
-                                    <div className="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-2xl flex items-center justify-center font-bold text-xl">
+                                    <div className="w-14 h-14 bg-brand-red/10 text-brand-red rounded-2xl flex items-center justify-center font-black text-xl border border-brand-red/20 shadow-lg shadow-brand-red/5">
                                         {selectedMessage.name.charAt(0)}
                                     </div>
                                     <div>
@@ -173,7 +173,7 @@ export default function AdminContactMessagesPage() {
                                         "flex items-center gap-2 px-6 py-3 rounded-2xl font-bold transition-all",
                                         selectedMessage.processed
                                             ? "bg-green-50 text-green-600 dark:bg-green-900/10"
-                                            : "bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-500/20"
+                                            : "bg-brand-red text-white hover:bg-brand-red-hover shadow-lg shadow-brand-red/20"
                                     )}
                                 >
                                     {selectedMessage.processed ? (
@@ -207,7 +207,7 @@ export default function AdminContactMessagesPage() {
                                                 href={selectedMessage.file.url}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-blue-600 font-bold hover:underline line-clamp-1 inline-flex items-center gap-1"
+                                                className="text-brand-red font-black uppercase tracking-widest text-[10px] hover:underline line-clamp-1 inline-flex items-center gap-1"
                                             >
                                                 View File <Eye size={14} />
                                             </a>

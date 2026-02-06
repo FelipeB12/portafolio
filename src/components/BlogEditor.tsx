@@ -99,7 +99,7 @@ export default function BlogEditor({ initialData, onSave, isSubmitting }: BlogEd
                             onClick={() => setMode("edit")}
                             className={cn(
                                 "px-3 py-1.5 rounded-md text-sm font-medium transition-all flex items-center gap-2",
-                                mode === "edit" ? "bg-white dark:bg-gray-800 shadow-sm text-blue-600" : "text-gray-500"
+                                mode === "edit" ? "bg-card shadow-sm text-brand-red border-border border" : "text-muted-text hover:text-gray-900"
                             )}
                         >
                             <Edit3 size={16} /> Write
@@ -109,7 +109,7 @@ export default function BlogEditor({ initialData, onSave, isSubmitting }: BlogEd
                             onClick={() => setMode("preview")}
                             className={cn(
                                 "px-3 py-1.5 rounded-md text-sm font-medium transition-all flex items-center gap-2",
-                                mode === "preview" ? "bg-white dark:bg-gray-800 shadow-sm text-blue-600" : "text-gray-500"
+                                mode === "preview" ? "bg-card shadow-sm text-brand-red border-border border" : "text-muted-text hover:text-gray-900"
                             )}
                         >
                             <Eye size={16} /> Preview
@@ -118,7 +118,7 @@ export default function BlogEditor({ initialData, onSave, isSubmitting }: BlogEd
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold transition-all disabled:opacity-50"
+                        className="px-6 py-2 bg-brand-red hover:bg-brand-red-hover text-white rounded-xl font-black uppercase tracking-widest text-xs transition-all disabled:opacity-50 shadow-lg shadow-brand-red/20"
                     >
                         {isSubmitting ? "Saving..." : "Save Post"}
                     </button>
@@ -144,7 +144,7 @@ export default function BlogEditor({ initialData, onSave, isSubmitting }: BlogEd
                                         type="text"
                                         value={slug}
                                         onChange={(e) => setSlug(e.target.value)}
-                                        className="flex-grow bg-transparent border-none outline-none text-blue-500 font-mono"
+                                        className="flex-grow bg-transparent border-none outline-none text-brand-red font-mono font-bold"
                                         required
                                     />
                                 </div>
@@ -175,7 +175,7 @@ export default function BlogEditor({ initialData, onSave, isSubmitting }: BlogEd
                         <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Cover Image</label>
                         <div
                             onClick={() => fileInputRef.current?.click()}
-                            className="relative aspect-video rounded-2xl border-2 border-dashed border-gray-200 dark:border-gray-800 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 transition-all overflow-hidden"
+                            className="relative aspect-video rounded-2xl border-2 border-dashed border-border flex flex-col items-center justify-center cursor-pointer hover:border-brand-red/50 transition-all overflow-hidden bg-card"
                         >
                             {coverImage ? (
                                 <img src={coverImage} alt="Cover" className="w-full h-full object-cover" />
@@ -225,14 +225,14 @@ export default function BlogEditor({ initialData, onSave, isSubmitting }: BlogEd
                             <button
                                 type="button"
                                 onClick={addTag}
-                                className="px-3 bg-blue-600 text-white rounded-lg"
+                                className="px-3 bg-brand-red text-white rounded-lg hover:bg-brand-red-hover transition-colors"
                             >
                                 +
                             </button>
                         </div>
                         <div className="flex flex-wrap gap-2">
                             {tags.map((tag) => (
-                                <span key={tag} className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md text-xs font-medium flex items-center gap-1">
+                                <span key={tag} className="px-2 py-1 bg-brand-red/10 text-brand-red rounded-md text-xs font-black uppercase tracking-tighter flex items-center gap-1 border border-brand-red/20">
                                     {tag}
                                     <button type="button" onClick={() => removeTag(tag)}>
                                         <X size={12} />

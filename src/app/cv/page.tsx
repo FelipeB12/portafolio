@@ -35,7 +35,7 @@ export default async function CVPage() {
                 <div className="container max-w-5xl mx-auto px-4">
                     <header className="mb-16 text-center max-w-2xl mx-auto space-y-6">
                         <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-                            Professional <span className="text-blue-600">CV</span>
+                            Professional <span className="text-brand-red">CV</span>
                         </h1>
                         <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
                             Find a detailed overview of my experience, skills, and educational background.
@@ -47,7 +47,7 @@ export default async function CVPage() {
                                     <a
                                         href={cv.fileUrl}
                                         download
-                                        className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 text-white rounded-2xl font-bold hover:bg-blue-700 transition-all shadow-xl shadow-blue-500/20"
+                                        className="inline-flex items-center gap-2 px-8 py-4 bg-brand-red text-white rounded-[2rem] font-black uppercase tracking-widest text-sm hover:bg-brand-red-hover transition-all shadow-xl shadow-brand-red/20"
                                     >
                                         <Download size={20} /> Download PDF
                                     </a>
@@ -72,7 +72,7 @@ export default async function CVPage() {
                     {cv ? (
                         <div className="relative w-full aspect-[1/1.4] md:aspect-[1/1.3] bg-white rounded-[3rem] shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden group">
                             {/* Overlay for better mobile scroll behavior */}
-                            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 z-10" />
+                            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-red to-brand-gold z-10" />
 
                             <iframe
                                 src={`${cv.fileUrl}#toolbar=0&navpanes=0&scrollbar=0`}

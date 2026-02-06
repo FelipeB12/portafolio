@@ -28,7 +28,7 @@ export default function BlogCard({ post, className }: BlogCardProps) {
     return (
         <div
             className={cn(
-                "group flex flex-col bg-white dark:bg-gray-800/50 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all hover:border-blue-500/50 h-full",
+                "group flex flex-col bg-card rounded-[2.5rem] border border-border overflow-hidden transition-all hover:border-brand-gold/50 hover:shadow-xl h-full",
                 className
             )}
         >
@@ -44,7 +44,7 @@ export default function BlogCard({ post, className }: BlogCardProps) {
                     {post.tags.slice(0, 2).map((tag) => (
                         <span
                             key={tag}
-                            className="text-[10px] uppercase tracking-widest font-bold px-2 py-1 bg-white/90 dark:bg-gray-900/90 text-gray-900 dark:text-white rounded backdrop-blur-sm"
+                            className="text-[10px] uppercase tracking-widest font-black px-2 py-1 bg-brand-red text-white rounded-lg shadow-lg shadow-brand-red/20"
                         >
                             {tag}
                         </span>
@@ -53,24 +53,24 @@ export default function BlogCard({ post, className }: BlogCardProps) {
             </div>
 
             <div className="p-6 flex flex-col flex-grow">
-                <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wider">
-                    <Calendar size={12} />
+                <div className="flex items-center gap-2 text-xs text-muted-text mb-3 uppercase tracking-widest font-bold">
+                    <Calendar size={12} className="text-brand-gold" />
                     {formattedDate}
                 </div>
 
-                <h3 className="text-xl font-bold mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                <h3 className="text-xl font-black mb-3 font-display group-hover:text-brand-red transition-colors leading-tight">
                     <Link href={`/blog/${post.slug}`}>
                         {post.title}
                     </Link>
                 </h3>
 
-                <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-3 mb-6 flex-grow leading-relaxed">
+                <p className="text-muted-text text-sm line-clamp-3 mb-6 flex-grow leading-relaxed">
                     {post.excerpt}
                 </p>
 
                 <Link
                     href={`/blog/${post.slug}`}
-                    className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 dark:text-blue-400 group/link"
+                    className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-brand-red hover:text-brand-red-hover group/link"
                 >
                     Read Article
                     <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />

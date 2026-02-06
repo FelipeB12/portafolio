@@ -79,7 +79,7 @@ export default async function BlogPostPage({
                 <article className="container max-w-4xl mx-auto px-4">
                     <Link
                         href="/blog"
-                        className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600 transition-colors mb-12"
+                        className="inline-flex items-center gap-2 text-sm text-muted-text hover:text-brand-red transition-colors mb-12 font-bold uppercase tracking-widest"
                     >
                         <ChevronLeft size={16} />
                         Back to Blog
@@ -106,7 +106,7 @@ export default async function BlogPostPage({
                                 <Link
                                     key={tag}
                                     href={`/blog?tag=${tag}`}
-                                    className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-lg text-xs font-semibold hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                                    className="px-3 py-1 bg-card text-muted-text border border-border rounded-lg text-xs font-black uppercase tracking-tighter hover:bg-brand-red/10 hover:text-brand-red transition-colors"
                                 >
                                     #{tag}
                                 </Link>
@@ -127,7 +127,7 @@ export default async function BlogPostPage({
                     </header>
 
                     <div
-                        className="prose prose-lg dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-blue-600 prose-img:rounded-3xl prose-pre:bg-gray-900 prose-pre:rounded-2xl prose-code:text-blue-500 dark:prose-code:text-blue-400"
+                        className="prose prose-lg dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-headings:font-display prose-a:text-brand-red prose-a:font-bold hover:prose-a:text-brand-red-hover prose-img:rounded-[2.5rem] prose-pre:bg-card prose-pre:border prose-pre:border-border prose-pre:rounded-3xl prose-code:text-brand-red"
                         dangerouslySetInnerHTML={{ __html: contentHtml }}
                     />
                 </article>

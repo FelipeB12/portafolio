@@ -21,6 +21,7 @@ export default function Navbar() {
     }, []);
 
     const navLinks = [
+        { name: "About", href: "/about" },
         { name: "Projects", href: "/projects" },
         { name: "Blog", href: "/blog" },
         { name: "Contact", href: "/contact" },
@@ -36,9 +37,9 @@ export default function Navbar() {
             )}
         >
             <div className="container max-w-7xl mx-auto px-4 flex items-center justify-between">
-                <Link href="/" className="text-xl font-bold tracking-tighter">
+                <Link href="/" className="text-2xl font-black tracking-tighter uppercase font-display">
                     {siteConfig.name}
-                    <span className="text-blue-600">.</span>
+                    <span className="text-brand-red">.</span>
                 </Link>
 
                 {/* Desktop Nav */}
@@ -47,7 +48,7 @@ export default function Navbar() {
                         <Link
                             key={link.name}
                             href={link.href}
-                            className="text-sm font-medium text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors"
+                            className="text-sm font-bold uppercase tracking-widest text-muted-text hover:text-brand-red transition-colors"
                         >
                             {link.name}
                         </Link>
@@ -67,7 +68,7 @@ export default function Navbar() {
                             {session.user.role === "admin" && (
                                 <Link
                                     href="/dashboard"
-                                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20"
+                                    className="flex items-center gap-2 px-4 py-2 bg-brand-red text-white rounded-xl text-xs font-bold hover:bg-brand-red-hover transition-all shadow-lg shadow-brand-red/20"
                                 >
                                     <LayoutDashboard size={14} /> Dashboard
                                 </Link>
@@ -83,7 +84,7 @@ export default function Navbar() {
                     ) : (
                         <Link
                             href="/auth/signin"
-                            className="text-xs font-bold text-gray-400 hover:text-blue-600 transition-colors ml-4"
+                            className="text-xs font-bold text-muted-text hover:text-brand-red transition-colors ml-4 uppercase tracking-widest"
                         >
                             Sign In
                         </Link>
@@ -113,7 +114,7 @@ export default function Navbar() {
                             key={link.name}
                             href={link.href}
                             onClick={() => setIsOpen(false)}
-                            className="text-2xl font-bold text-gray-900 dark:text-white"
+                            className="text-2xl font-black uppercase tracking-tighter text-foreground hover:text-brand-red transition-colors"
                         >
                             {link.name}
                         </Link>
@@ -122,7 +123,7 @@ export default function Navbar() {
                         <Link
                             href="/dashboard"
                             onClick={() => setIsOpen(false)}
-                            className="text-2xl font-bold text-blue-600"
+                            className="text-2xl font-black uppercase tracking-tighter text-brand-red"
                         >
                             Dashboard
                         </Link>
@@ -140,7 +141,7 @@ export default function Navbar() {
                             <Link
                                 href="/auth/signin"
                                 onClick={() => setIsOpen(false)}
-                                className="px-8 py-3 bg-blue-50 text-blue-600 rounded-2xl font-bold"
+                                className="px-10 py-4 bg-brand-red/10 text-brand-red border border-brand-red/20 rounded-2xl font-black uppercase tracking-widest text-sm"
                             >
                                 Sign In to Admin
                             </Link>

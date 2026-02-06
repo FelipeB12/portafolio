@@ -11,54 +11,66 @@ export default function Hero() {
     return (
         <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-20 overflow-hidden">
             {/* Background blobs for premium look */}
-            <div className="absolute top-1/4 -left-20 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute top-1/4 -left-20 w-72 h-72 bg-brand-red/10 rounded-full blur-3xl animate-pulse" />
             <div className="absolute bottom-1/4 -right-20 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-700" />
 
             <div className="container max-w-5xl mx-auto text-center z-10">
                 <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-red/10 text-brand-red mb-8 border border-brand-red/20 font-semibold"
+                >
+                    <span className="relative flex h-3 w-3">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-red opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-brand-red"></span>
+                    </span>
+                    Available for new projects
+                </motion.div>
+
+                <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="text-5xl md:text-8xl font-black mb-6 tracking-tight font-display"
                 >
-                    <span className="inline-block px-4 py-1.5 mb-6 text-sm font-medium tracking-wider text-blue-600 uppercase bg-blue-50 rounded-full dark:bg-blue-900/30 dark:text-blue-400">
-                        Available for new opportunities
-                    </span>
-                    <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400">
-                        Hi, I'm <span className="text-blue-600">{siteConfig.name}</span>
-                    </h1>
-                    <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto leading-tight">
-                        {siteConfig.title}
-                    </h2>
-                    <p className="text-lg text-gray-600 dark:text-gray-400 mb-10 max-w-xl mx-auto">
-                        {siteConfig.proposition}
-                    </p>
-                </motion.div>
+                    Building <span className="text-brand-red">Excellence</span> <br />
+                    Through <span className="text-brand-gold italic">Logic</span>.
+                </motion.h1>
+
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="text-xl md:text-2xl text-muted-text max-w-3xl mx-auto mb-12 font-medium leading-relaxed"
+                >
+                    {siteConfig.proposition}
+                </motion.p>
 
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="flex flex-wrap items-center justify-center gap-4"
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    className="flex flex-col sm:flex-row items-center justify-center gap-4"
                 >
                     <Link
                         href="#projects"
-                        className="group px-8 py-4 bg-gray-900 text-white dark:bg-white dark:text-gray-900 rounded-xl font-semibold transition-all hover:translate-y-[-2px] hover:shadow-xl flex items-center gap-2"
+                        className="btn-primary w-full sm:w-auto"
                     >
                         View Projects
-                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                        <ArrowRight className="w-5 h-5 ml-2 inline-block" />
                     </Link>
 
                     <button
                         onClick={() => window.open("/api/cv/download", "_blank")}
-                        className="px-8 py-4 bg-white text-gray-900 dark:bg-gray-800 dark:text-white border border-gray-200 dark:border-gray-700 rounded-xl font-semibold transition-all hover:bg-gray-50 dark:hover:bg-gray-700 hover:translate-y-[-2px] flex items-center gap-2"
+                        className="btn-secondary w-full sm:w-auto flex items-center justify-center gap-2"
                     >
-                        <FileText className="w-4 h-4" />
+                        <FileText className="w-5 h-5" />
                         Explore CV
                     </button>
 
                     <Link
                         href="/contact"
-                        className="px-8 py-4 text-gray-600 dark:text-gray-400 font-semibold transition-colors hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-2"
                     >
                         <Mail className="w-4 h-4" />
                         Contact Me

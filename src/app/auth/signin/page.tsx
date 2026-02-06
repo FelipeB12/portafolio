@@ -38,7 +38,7 @@ export default function SignInPage() {
             {/* Back Button */}
             <Link
                 href="/"
-                className="absolute top-10 left-10 flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-blue-600 transition-colors"
+                className="absolute top-10 left-10 flex items-center gap-2 text-sm font-black uppercase tracking-widest text-muted-text hover:text-brand-red transition-colors"
             >
                 <ArrowLeft size={16} /> Back to Site
             </Link>
@@ -47,11 +47,11 @@ export default function SignInPage() {
 
                 {/* Header */}
                 <div className="text-center space-y-4">
-                    <div className="inline-flex w-16 h-16 bg-blue-600 rounded-[2rem] items-center justify-center shadow-2xl shadow-blue-500/20 mb-2">
+                    <div className="inline-flex w-16 h-16 bg-brand-red rounded-[2rem] items-center justify-center shadow-2xl shadow-brand-red/20 mb-2 border border-white/10">
                         <Lock className="text-white" size={28} />
                     </div>
                     <h1 className="text-4xl font-black tracking-tighter">
-                        Admin <span className="text-blue-600 text-glow">Portal</span>
+                        Admin <span className="text-brand-red text-glow">Portal</span>
                     </h1>
                     <p className="text-gray-500 font-medium">Please sign in to access your dashboard.</p>
                 </div>
@@ -93,7 +93,7 @@ export default function SignInPage() {
                                     placeholder="your@email.com"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="w-full pl-12 pr-6 py-4 bg-gray-50 dark:bg-gray-800 border-none rounded-2xl text-sm focus:ring-2 focus:ring-blue-500 transition-all outline-none"
+                                    className="w-full pl-12 pr-6 py-4 bg-card border-border border rounded-2xl text-sm focus:ring-2 focus:ring-brand-red/50 transition-all outline-none"
                                     required
                                 />
                             </div>
@@ -101,7 +101,7 @@ export default function SignInPage() {
                         <button
                             type="submit"
                             disabled={!!isLoading}
-                            className="w-full py-4 bg-blue-600 text-white rounded-2xl font-bold hover:bg-blue-700 transition-all shadow-xl shadow-blue-500/20 disabled:opacity-50"
+                            className="w-full py-4 bg-brand-red text-white rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-brand-red-hover transition-all shadow-xl shadow-brand-red/20 disabled:opacity-50"
                         >
                             {isLoading === "email" ? (
                                 <Loader2 className="animate-spin mx-auto" size={20} />

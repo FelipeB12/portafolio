@@ -79,25 +79,25 @@ export default function AdminCVPage() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-12">
-            <div className="flex justify-between items-center bg-white dark:bg-gray-900 p-8 rounded-[2.5rem] border border-gray-100 dark:border-gray-800 shadow-sm">
+            <div className="flex justify-between items-center bg-card p-8 rounded-[2.5rem] border border-border shadow-sm">
                 <div>
-                    <h1 className="text-3xl font-bold">Curriculum Vitae</h1>
-                    <p className="text-gray-500">Manage your professional resume.</p>
+                    <h1 className="text-3xl font-black uppercase font-display tracking-tight">Curriculum <span className="text-brand-red">Vitae</span></h1>
+                    <p className="text-gray-500 font-medium">Manage your professional resume.</p>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Upload Section */}
                 <div className="bg-white dark:bg-gray-900 p-10 rounded-[3.5rem] border border-gray-100 dark:border-gray-800 space-y-8">
-                    <h2 className="text-xl font-bold flex items-center gap-2">
-                        <Upload className="text-blue-600" />
+                    <h2 className="text-xl font-black flex items-center gap-2 uppercase font-display tracking-tight">
+                        <Upload className="text-brand-red" />
                         Upload New CV
                     </h2>
 
                     <div
                         className={cn(
                             "group relative border-2 border-dashed rounded-[2.5rem] p-8 text-center transition-all",
-                            file ? "border-blue-500 bg-blue-50/10" : "border-gray-200 dark:border-gray-800 hover:border-blue-400"
+                            file ? "border-brand-red bg-brand-red/5" : "border-border hover:border-brand-red/50"
                         )}
                     >
                         <input
@@ -107,8 +107,8 @@ export default function AdminCVPage() {
                             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                         />
                         <div className="space-y-4">
-                            <div className="w-16 h-16 bg-blue-50 dark:bg-blue-900/20 rounded-2xl flex items-center justify-center mx-auto transition-transform group-hover:scale-110">
-                                <FileText className="text-blue-600" size={32} />
+                            <div className="w-16 h-16 bg-brand-red/10 rounded-2xl flex items-center justify-center mx-auto transition-transform group-hover:scale-110">
+                                <FileText className="text-brand-red" size={32} />
                             </div>
                             <div>
                                 <p className="font-bold text-gray-900 dark:text-gray-100">
@@ -132,7 +132,7 @@ export default function AdminCVPage() {
                     <button
                         onClick={handleUpload}
                         disabled={!file || isUploading}
-                        className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold transition-all shadow-xl shadow-blue-500/20 disabled:opacity-50 disabled:shadow-none flex items-center justify-center gap-2"
+                        className="w-full py-4 bg-brand-red hover:bg-brand-red-hover text-white rounded-2xl font-black uppercase tracking-widest text-sm transition-all shadow-xl shadow-brand-red/20 disabled:opacity-50 disabled:shadow-none flex items-center justify-center gap-2"
                     >
                         {isUploading ? (
                             <>

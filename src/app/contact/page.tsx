@@ -48,28 +48,32 @@ export default function ContactPage() {
             <Navbar />
 
             <main className="flex-grow pt-32 pb-24">
-                <div className="container max-w-6xl mx-auto px-4">
+                <div className="container max-w-7xl mx-auto px-4">
+                    <header className="mb-24 text-center max-w-4xl mx-auto">
+                        <h1 className="text-6xl md:text-8xl font-black tracking-tighter font-display uppercase leading-[1.1]">
+                            Let's <span className="text-brand-red">talk.</span>
+                        </h1>
+                        <p className="text-xl md:text-2xl text-muted-text max-w-3xl mx-auto font-medium mt-8 leading-relaxed">
+                            Have a project in mind or just want to say hi? I'm always open to <span className="text-gray-900 dark:text-white font-bold">new opportunities</span> and interesting collaborations.
+                        </p>
+                    </header>
+
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
                         {/* Left Column: Info */}
                         <div className="space-y-12">
                             <div className="space-y-6">
-                                <h1 className="text-6xl md:text-8xl font-bold tracking-tight">
-                                    Let's <span className="text-blue-600">talk.</span>
-                                </h1>
-                                <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-md">
-                                    Have a project in mind or just want to say hi? I'm always open to new opportunities and interesting collaborations.
-                                </p>
+                                {/* Header removed from here to top level */}
                             </div>
 
                             <div className="space-y-8">
                                 <div className="flex items-center gap-6 group">
-                                    <div className="w-14 h-14 bg-blue-50 dark:bg-blue-900/20 rounded-2xl flex items-center justify-center transition-colors group-hover:bg-blue-600 group-hover:text-white">
-                                        <Send size={24} className="text-blue-600 group-hover:text-white" />
+                                    <div className="w-14 h-14 bg-brand-red/10 rounded-2xl flex items-center justify-center transition-colors group-hover:bg-brand-red group-hover:text-white border border-brand-red/20 shadow-lg shadow-brand-red/5">
+                                        <Send size={24} className="text-brand-red group-hover:text-white" />
                                     </div>
                                     <div>
-                                        <p className="text-sm text-gray-400 font-medium">Email me at</p>
-                                        <p className="text-xl font-bold">hello@felipe.dev</p>
+                                        <p className="text-xs text-muted-text font-black uppercase tracking-widest">Email me at</p>
+                                        <p className="text-xl font-black font-display">hello@felipe.dev</p>
                                     </div>
                                 </div>
                             </div>
@@ -112,23 +116,22 @@ export default function ContactPage() {
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="space-y-2">
-                                            <label className="text-sm font-bold text-gray-500 ml-2">Name</label>
                                             <input
                                                 required
                                                 name="name"
                                                 type="text"
                                                 placeholder="John Doe"
-                                                className="w-full px-6 py-4 bg-gray-50 dark:bg-gray-800 border-none rounded-2xl focus:ring-2 focus:ring-blue-500 transition-all outline-none"
+                                                className="w-full px-6 py-4 bg-card border-border rounded-2xl focus:ring-2 focus:ring-brand-red/50 transition-all outline-none border"
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-sm font-bold text-gray-500 ml-2">Email</label>
+                                            <label className="text-xs font-black uppercase tracking-widest text-muted-text ml-2">Email</label>
                                             <input
                                                 required
                                                 name="email"
                                                 type="email"
                                                 placeholder="john@example.com"
-                                                className="w-full px-6 py-4 bg-gray-50 dark:bg-gray-800 border-none rounded-2xl focus:ring-2 focus:ring-blue-500 transition-all outline-none"
+                                                className="w-full px-6 py-4 bg-card border-border rounded-2xl focus:ring-2 focus:ring-brand-red/50 transition-all outline-none border"
                                             />
                                         </div>
                                     </div>
@@ -136,10 +139,10 @@ export default function ContactPage() {
                                     <div className="space-y-2">
                                         <label className="text-sm font-bold text-gray-500 ml-2">Project Budget (Optional)</label>
                                         <div className="relative">
-                                            <DollarSign className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                                            <DollarSign className="absolute left-6 top-1/2 -translate-y-1/2 text-brand-gold" size={18} />
                                             <select
                                                 name="projectBudget"
-                                                className="w-full pl-14 pr-6 py-4 bg-gray-50 dark:bg-gray-800 border-none rounded-2xl focus:ring-2 focus:ring-blue-500 transition-all outline-none appearance-none cursor-pointer"
+                                                className="w-full pl-14 pr-6 py-4 bg-card border-border rounded-2xl focus:ring-2 focus:ring-brand-gold/50 transition-all outline-none appearance-none cursor-pointer border"
                                             >
                                                 <option value="">Less than $1k</option>
                                                 <option value="$1k - $5k">$1k - $5k</option>
@@ -156,15 +159,15 @@ export default function ContactPage() {
                                             name="message"
                                             rows={5}
                                             placeholder="Tell me about your project..."
-                                            className="w-full px-6 py-4 bg-gray-50 dark:bg-gray-800 border-none rounded-2xl focus:ring-2 focus:ring-blue-500 transition-all outline-none resize-none"
+                                            className="w-full px-6 py-4 bg-card border-border rounded-2xl focus:ring-2 focus:ring-brand-red/50 transition-all outline-none resize-none border"
                                         />
                                     </div>
 
                                     <div className="space-y-2">
                                         <label className="text-sm font-bold text-gray-500 ml-2">Attachment (Optional)</label>
                                         <div className={cn(
-                                            "relative border-2 border-dashed border-gray-100 dark:border-gray-800 rounded-2xl p-6 transition-all hover:border-blue-400 group",
-                                            file ? "bg-blue-50/10 border-blue-500" : ""
+                                            "relative border-2 border-dashed border-border rounded-2xl p-6 transition-all hover:border-brand-red/50 group",
+                                            file ? "bg-brand-red/5 border-brand-red" : ""
                                         )}>
                                             <input
                                                 type="file"
@@ -173,7 +176,7 @@ export default function ContactPage() {
                                             />
                                             <div className="flex items-center gap-4">
                                                 <div className="w-12 h-12 bg-white dark:bg-gray-800 rounded-xl flex items-center justify-center shadow-sm">
-                                                    <Upload className={cn("text-gray-400 group-hover:text-blue-500", file ? "text-blue-500" : "")} size={20} />
+                                                    <Upload className={cn("text-muted-text group-hover:text-brand-red", file ? "text-brand-red" : "")} size={20} />
                                                 </div>
                                                 <div>
                                                     <p className="font-bold text-sm">{file ? file.name : "Choose a file"}</p>
@@ -186,7 +189,7 @@ export default function ContactPage() {
                                     <button
                                         disabled={isSubmitting}
                                         type="submit"
-                                        className="w-full py-5 bg-blue-600 hover:bg-blue-700 text-white rounded-[2rem] font-bold text-lg transition-all shadow-xl shadow-blue-500/20 active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-3"
+                                        className="w-full py-5 bg-brand-red hover:bg-brand-red-hover text-white rounded-[2rem] font-black uppercase tracking-widest text-sm transition-all shadow-xl shadow-brand-red/20 active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-3"
                                     >
                                         {isSubmitting ? (
                                             <>

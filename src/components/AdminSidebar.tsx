@@ -21,6 +21,7 @@ import { cn } from "@/lib/utils";
 
 const menuItems = [
     { id: "overview", label: "Dashboard", icon: LayoutDashboard, href: "/dashboard" },
+    { id: "about", label: "About Me", icon: User, href: "/dashboard/about" },
     { id: "projects", label: "Projects", icon: Briefcase, href: "/dashboard/projects" },
     { id: "blog", label: "Blog Posts", icon: FileEdit, href: "/dashboard/blog" },
     { id: "cv", label: "Curriculum", icon: FileText, href: "/dashboard/cv" },
@@ -50,10 +51,10 @@ export default function AdminSidebar() {
             {/* Header */}
             <div className="p-8 flex items-center justify-between">
                 <div className={cn("flex items-center gap-3", isCollapsed && "hidden")}>
-                    <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20">
+                    <div className="w-10 h-10 bg-brand-red rounded-xl flex items-center justify-center shadow-lg shadow-brand-red/20">
                         <span className="text-white font-black text-xl">A</span>
                     </div>
-                    <span className="font-black text-xl tracking-tight">Admin<span className="text-blue-600">.</span></span>
+                    <span className="font-black text-xl tracking-tight">Admin<span className="text-brand-red">.</span></span>
                 </div>
 
                 <button
@@ -75,17 +76,17 @@ export default function AdminSidebar() {
                             className={cn(
                                 "flex items-center gap-4 px-4 py-3.5 rounded-2xl font-bold transition-all relative group",
                                 isActive
-                                    ? "bg-blue-50 dark:bg-blue-900/10 text-blue-600"
+                                    ? "bg-brand-red/10 text-brand-red"
                                     : "text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-800/50 hover:text-gray-900 dark:hover:text-gray-100"
                             )}
                         >
-                            <item.icon size={22} className={cn("transition-transform group-hover:scale-110", isActive && "text-blue-600")} />
+                            <item.icon size={22} className={cn("transition-transform group-hover:scale-110", isActive && "text-brand-red")} />
                             <span className={cn("transition-all duration-300", isCollapsed ? "opacity-0 invisible w-0" : "opacity-100 visible")}>
                                 {item.label}
                             </span>
 
                             {isActive && !isCollapsed && (
-                                <div className="absolute left-0 w-1.5 h-6 bg-blue-600 rounded-r-full" />
+                                <div className="absolute left-0 w-1.5 h-6 bg-brand-red rounded-r-full" />
                             )}
 
                             {isCollapsed && (
@@ -106,7 +107,7 @@ export default function AdminSidebar() {
                 )}>
                     {!isCollapsed && (
                         <div className="flex items-center gap-3 overflow-hidden">
-                            <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-blue-600 flex-shrink-0">
+                            <div className="w-10 h-10 bg-brand-red/10 rounded-xl flex items-center justify-center text-brand-red flex-shrink-0">
                                 <User size={20} />
                             </div>
                             <div className="flex-grow min-w-0">
@@ -132,7 +133,7 @@ export default function AdminSidebar() {
                     <Link
                         href="/"
                         target="_blank"
-                        className="flex items-center justify-center gap-2 mt-6 text-xs text-gray-400 font-bold hover:text-blue-600 transition-colors"
+                        className="flex items-center justify-center gap-2 mt-6 text-xs text-gray-400 font-bold hover:text-brand-red transition-colors"
                     >
                         Visit Website <ExternalLink size={12} />
                     </Link>

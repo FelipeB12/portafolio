@@ -48,12 +48,12 @@ export default async function BlogPage({
 
             <main className="flex-grow pt-32 pb-24">
                 <div className="container max-w-7xl mx-auto px-4">
-                    <header className="mb-16 text-center max-w-3xl mx-auto">
-                        <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
-                            Technical <span className="text-blue-600">Writing</span>
+                    <header className="mb-24 text-center max-w-4xl mx-auto">
+                        <h1 className="text-6xl md:text-8xl font-black tracking-tighter font-display uppercase leading-[1.1]">
+                            Technical <span className="text-brand-gold">Writing</span>
                         </h1>
-                        <p className="text-lg text-gray-600 dark:text-gray-400">
-                            Deep dives into the technologies I use every day. Filtering is available by tag below.
+                        <p className="text-xl md:text-2xl text-muted-text max-w-3xl mx-auto font-medium mt-8 leading-relaxed">
+                            Deep dives into the technologies I use every day. Logically structured insights for the <span className="text-gray-900 dark:text-white font-bold">modern engineer.</span>
                         </p>
                     </header>
 
@@ -64,8 +64,8 @@ export default async function BlogPage({
                             className={cn(
                                 "px-4 py-2 rounded-full text-sm font-medium transition-all border",
                                 !tag
-                                    ? "bg-blue-600 border-blue-600 text-white"
-                                    : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-blue-600"
+                                    ? "bg-brand-red border-brand-red text-white shadow-lg shadow-brand-red/20"
+                                    : "bg-card border-border text-muted-text hover:border-brand-red/50"
                             )}
                         >
                             All Posts
@@ -78,8 +78,8 @@ export default async function BlogPage({
                                 className={cn(
                                     "px-4 py-2 rounded-full text-sm font-medium transition-all border",
                                     tag === t
-                                        ? "bg-blue-600 border-blue-600 text-white"
-                                        : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-blue-600"
+                                        ? "bg-brand-red border-brand-red text-white shadow-lg shadow-brand-red/20"
+                                        : "bg-card border-border text-muted-text hover:border-brand-red/50"
                                 )}
                             >
                                 {t}
@@ -108,7 +108,7 @@ export default async function BlogPage({
                                     className={cn(
                                         "w-12 h-12 flex items-center justify-center rounded-xl font-bold transition-all border",
                                         page === i + 1
-                                            ? "bg-blue-600 border-blue-600 text-white"
+                                            ? "bg-brand-red border-brand-red text-white shadow-lg shadow-brand-red/20"
                                             : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-600"
                                     )}
                                 >

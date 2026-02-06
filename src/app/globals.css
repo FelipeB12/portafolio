@@ -2,26 +2,91 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Neutral Base (60-70%) - Slate Steel */
+  --background: #f8fafc;
+  --foreground: #0f172a;
+
+  /* Main Accent (20-25%) - Crimson Iron Red */
+  --brand-red: #c41e3a;
+  --brand-red-hover: #a51831;
+
+  /* Secondary Accent (5-10%) - Sunlight Gold */
+  --brand-gold: #fdb813;
+  --brand-gold-hover: #e5a711;
+
+  /* Card and Border Colors */
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --muted: #64748b;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-brand-red: var(--brand-red);
+  --color-brand-red-hover: var(--brand-red-hover);
+  --color-brand-gold: var(--brand-gold);
+  --color-brand-gold-hover: var(--brand-gold-hover);
+
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-muted-text: var(--muted);
+
+  /* Font Mappings */
+  --font-sans: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f172a;
+    --foreground: #f8fafc;
+    --card: #1e293b;
+    --border: #334155;
+    --muted: #94a3b8;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-open-sans), sans-serif;
+  @apply antialiased transition-colors duration-300;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-montserrat), sans-serif;
+  @apply font-bold tracking-tight text-foreground;
+}
+
+/* UI Passion & Strength Accents */
+.btn-primary {
+  @apply px-6 py-3 bg-brand-red text-white rounded-xl font-bold transition-all hover:bg-brand-red-hover hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-brand-red/20;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-border rounded-xl font-bold transition-all hover:bg-gray-50 dark:hover:bg-gray-700 hover:scale-[1.02] shadow-sm;
+}
+
+.accent-gold {
+  @apply text-brand-gold;
+}
+
+.bg-sunlight {
+  @apply bg-gradient-to-tr from-brand-gold/10 to-transparent;
+}
+
+/* Logical / Analytical Structure */
+.section-container {
+  @apply container max-w-7xl mx-auto px-4 py-24;
+}
+
+.card-premium {
+  @apply bg-card border border-border rounded-[2.5rem] p-8 shadow-sm transition-all hover:shadow-xl hover:translate-y-[-4px];
 }

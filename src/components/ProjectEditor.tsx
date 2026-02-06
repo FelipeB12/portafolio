@@ -110,14 +110,14 @@ export default function ProjectEditor({ initialData, onSave, isSubmitting }: Pro
         <form onSubmit={handleSubmit} className="space-y-12">
             <div className="flex justify-between items-center bg-white dark:bg-gray-900 p-8 rounded-[2.5rem] border border-gray-100 dark:border-gray-800 shadow-sm">
                 <div>
-                    <h2 className="text-3xl font-bold">{initialData ? "Edit Case Study" : "New Case Study"}</h2>
-                    <p className="text-gray-500">Crafting the story of your project.</p>
+                    <h2 className="text-3xl font-black uppercase font-display tracking-tight">{initialData ? "Edit" : "New"} <span className="text-brand-red">Case Study</span></h2>
+                    <p className="text-gray-500 font-medium">Crafting the story of your project.</p>
                 </div>
                 <div className="flex gap-4">
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold transition-all shadow-xl shadow-blue-500/20 disabled:opacity-50"
+                        className="px-8 py-3 bg-brand-red hover:bg-brand-red-hover text-white rounded-[2rem] font-black uppercase tracking-widest text-xs transition-all shadow-xl shadow-brand-red/20 disabled:opacity-50"
                     >
                         {isSubmitting ? "Saving..." : "Save Project"}
                     </button>
@@ -138,13 +138,13 @@ export default function ProjectEditor({ initialData, onSave, isSubmitting }: Pro
                                 className="w-full text-4xl font-black bg-transparent border-none outline-none placeholder:text-gray-200 dark:placeholder:text-gray-800"
                                 required
                             />
-                            <div className="flex items-center gap-2 text-sm font-mono text-blue-500/50">
+                            <div className="flex items-center gap-2 text-sm font-mono text-brand-red/50">
                                 <span>/projects/</span>
                                 <input
                                     type="text"
                                     value={slug}
                                     onChange={(e) => setSlug(e.target.value)}
-                                    className="bg-transparent border-none outline-none text-blue-600 font-bold"
+                                    className="bg-transparent border-none outline-none text-brand-red font-black"
                                     required
                                 />
                             </div>
@@ -187,7 +187,7 @@ export default function ProjectEditor({ initialData, onSave, isSubmitting }: Pro
                         </div>
 
                         <div className="bg-white dark:bg-gray-900 p-10 rounded-[3rem] border border-gray-100 dark:border-gray-800 space-y-6">
-                            <h3 className="text-xl font-bold flex items-center gap-2"><User className="text-blue-500" /> Your Role</h3>
+                            <h3 className="text-xl font-black uppercase font-display tracking-tight flex items-center gap-2"><User className="text-brand-red" /> Your Role</h3>
                             <input
                                 type="text"
                                 value={role}
@@ -210,7 +210,7 @@ export default function ProjectEditor({ initialData, onSave, isSubmitting }: Pro
                                 onClick={() => setFeatured(!featured)}
                                 className={cn(
                                     "w-12 h-6 rounded-full transition-all relative",
-                                    featured ? "bg-blue-600" : "bg-gray-200 dark:bg-gray-800"
+                                    featured ? "bg-brand-red" : "bg-border"
                                 )}
                             >
                                 <div className={cn("absolute top-1 w-4 h-4 bg-white rounded-full transition-all", featured ? "right-1" : "left-1")} />
@@ -256,11 +256,11 @@ export default function ProjectEditor({ initialData, onSave, isSubmitting }: Pro
                                 className="flex-grow p-4 bg-gray-50 dark:bg-gray-800/50 border-none rounded-2xl text-sm"
                                 placeholder="Add tool..."
                             />
-                            <button type="button" onClick={addTech} className="p-4 bg-blue-600 text-white rounded-2xl">+</button>
+                            <button type="button" onClick={addTech} className="p-4 bg-brand-red text-white rounded-2xl hover:bg-brand-red-hover transition-colors shadow-lg shadow-brand-red/20">+</button>
                         </div>
                         <div className="flex flex-wrap gap-2">
                             {techStack.map((tech) => (
-                                <span key={tech} className="px-3 py-1.5 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-xl text-xs font-bold flex items-center gap-2">
+                                <span key={tech} className="px-3 py-1.5 bg-brand-red/10 text-brand-red rounded-xl text-xs font-black uppercase tracking-widest flex items-center gap-2 border border-brand-red/20">
                                     {tech}
                                     <button type="button" onClick={() => setTechStack(techStack.filter(t => t !== tech))}><X size={12} /></button>
                                 </span>
@@ -281,12 +281,12 @@ export default function ProjectEditor({ initialData, onSave, isSubmitting }: Pro
                                     className="flex-grow p-4 bg-gray-50 dark:bg-gray-800/50 border-none rounded-2xl text-sm"
                                     placeholder="Add decision..."
                                 />
-                                <button type="button" onClick={addDecision} className="p-4 bg-blue-600 text-white rounded-2xl">+</button>
+                                <button type="button" onClick={addDecision} className="p-4 bg-brand-red text-white rounded-2xl hover:bg-brand-red-hover transition-colors shadow-lg shadow-brand-red/20">+</button>
                             </div>
                             <div className="space-y-3">
                                 {keyDecisions.map((decision, i) => (
                                     <div key={i} className="flex gap-3 text-sm text-gray-600 dark:text-gray-400">
-                                        <span className="font-black text-blue-500">{i + 1}.</span>
+                                        <span className="font-black text-brand-red">{i + 1}.</span>
                                         <p className="flex-grow">{decision}</p>
                                         <button type="button" onClick={() => setKeyDecisions(keyDecisions.filter((_, idx) => idx !== i))}><Trash2 size={14} /></button>
                                     </div>
@@ -331,8 +331,8 @@ export default function ProjectEditor({ initialData, onSave, isSubmitting }: Pro
                         </div>
                     ))}
                     {isUploading && (
-                        <div className="aspect-video rounded-3xl border-2 border-dashed border-blue-200 dark:border-blue-900/50 flex items-center justify-center animate-pulse bg-blue-50/10">
-                            <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
+                        <div className="aspect-video rounded-3xl border-2 border-dashed border-brand-red/20 flex items-center justify-center animate-pulse bg-brand-red/5">
+                            <div className="w-8 h-8 border-4 border-brand-red border-t-transparent rounded-full animate-spin" />
                         </div>
                     )}
                     {screenshots.length === 0 && !isUploading && (

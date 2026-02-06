@@ -43,13 +43,13 @@ export default function DashboardProjectsPage() {
         <div className="space-y-12 pb-20">
             <header className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div>
-                    <h1 className="text-4xl font-black tracking-tight">Projects <span className="text-blue-600">Store</span></h1>
+                    <h1 className="text-4xl font-black tracking-tight uppercase font-display">Projects <span className="text-brand-red">Store</span></h1>
                     <p className="text-gray-500 mt-1">Manage your professional case studies and showcases.</p>
                 </div>
 
                 <Link
                     href="/dashboard/projects/new"
-                    className="flex items-center gap-2 px-8 py-4 bg-blue-600 text-white rounded-2xl font-bold hover:bg-blue-700 transition-all shadow-xl shadow-blue-500/20"
+                    className="flex items-center gap-2 px-8 py-4 bg-brand-red text-white rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-brand-red-hover transition-all shadow-xl shadow-brand-red/20"
                 >
                     <Plus size={20} /> Add Project
                 </Link>
@@ -63,14 +63,14 @@ export default function DashboardProjectsPage() {
                         placeholder="Search projects by title or description..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        className="w-full pl-16 pr-8 py-5 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-[2rem] shadow-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                        className="w-full pl-16 pr-8 py-5 bg-card border-border rounded-[2rem] shadow-sm focus:ring-2 focus:ring-brand-red/50 outline-none transition-all border"
                     />
                 </div>
 
                 <div className="bg-white dark:bg-gray-900 rounded-[3rem] border border-gray-100 dark:border-gray-800 shadow-sm overflow-hidden">
                     {isLoading ? (
                         <div className="py-40 flex flex-col items-center justify-center gap-4">
-                            <Loader2 className="animate-spin text-blue-600" size={40} />
+                            <Loader2 className="animate-spin text-brand-red" size={40} />
                             <p className="text-gray-400 font-bold">Loading your portfolio...</p>
                         </div>
                     ) : filteredProjects.length > 0 ? (
@@ -102,7 +102,7 @@ export default function DashboardProjectsPage() {
                                             </td>
                                             <td className="p-8">
                                                 {project.featured ? (
-                                                    <span className="px-4 py-1.5 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-full text-xs font-black uppercase tracking-tighter">Featured</span>
+                                                    <span className="px-4 py-1.5 bg-brand-red/10 text-brand-red rounded-full text-xs font-black uppercase tracking-tighter border border-brand-red/20">Featured</span>
                                                 ) : (
                                                     <span className="px-4 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-400 rounded-full text-xs font-bold uppercase tracking-tighter">Standard</span>
                                                 )}
@@ -115,7 +115,7 @@ export default function DashboardProjectsPage() {
                                                     <Link
                                                         href={`/projects/${project.slug}`}
                                                         target="_blank"
-                                                        className="p-3 bg-white dark:bg-gray-800 text-gray-400 hover:text-blue-600 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 transition-colors"
+                                                        className="p-3 bg-white dark:bg-gray-800 text-gray-400 hover:text-brand-red rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 transition-colors"
                                                     >
                                                         <Eye size={18} />
                                                     </Link>
@@ -149,7 +149,7 @@ export default function DashboardProjectsPage() {
                             </div>
                             <Link
                                 href="/dashboard/projects/new"
-                                className="inline-flex items-center gap-2 px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-2xl font-bold hover:opacity-90 transition-all"
+                                className="inline-flex items-center gap-2 px-8 py-4 bg-brand-red text-white rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-brand-red-hover transition-all shadow-xl shadow-brand-red/20"
                             >
                                 <Plus size={18} /> Create Project
                             </Link>

@@ -50,12 +50,12 @@ export default async function ProjectsPage({
 
             <main className="flex-grow pt-32 pb-24">
                 <div className="container max-w-7xl mx-auto px-4">
-                    <header className="mb-24 text-center max-w-3xl mx-auto">
-                        <h1 className="text-5xl md:text-7xl font-bold mb-8 tracking-tight">
-                            Curated <span className="text-blue-600">Work</span>
+                    <header className="mb-24 text-center max-w-4xl mx-auto">
+                        <h1 className="text-6xl md:text-8xl font-black tracking-tighter font-display uppercase leading-[1.1]">
+                            Curated <span className="text-brand-red">Work</span>
                         </h1>
-                        <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
-                            Explore my portfolio of projects ranging from full-stack applications to performance-critical systems.
+                        <p className="text-xl md:text-2xl text-muted-text max-w-3xl mx-auto font-medium mt-8 leading-relaxed">
+                            Explore my portfolio of projects ranging from <span className="text-gray-900 dark:text-white font-bold">full-stack applications</span> to performance-critical systems.
                         </p>
                     </header>
 
@@ -66,8 +66,8 @@ export default async function ProjectsPage({
                             className={cn(
                                 "px-8 py-3 rounded-2xl text-sm font-bold transition-all border shadow-sm",
                                 !featured
-                                    ? "bg-blue-600 border-blue-600 text-white shadow-blue-500/20"
-                                    : "bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-800 text-gray-500 hover:border-blue-500/50"
+                                    ? "bg-brand-red border-brand-red text-white shadow-brand-red/20"
+                                    : "bg-card border-border text-muted-text hover:border-brand-red/50"
                             )}
                         >
                             All Projects
@@ -77,8 +77,8 @@ export default async function ProjectsPage({
                             className={cn(
                                 "px-8 py-3 rounded-2xl text-sm font-bold transition-all border shadow-sm",
                                 featured
-                                    ? "bg-blue-600 border-blue-600 text-white shadow-blue-500/20"
-                                    : "bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-800 text-gray-500 hover:border-blue-500/50"
+                                    ? "bg-brand-red border-brand-red text-white shadow-brand-red/20"
+                                    : "bg-card border-border text-muted-text hover:border-brand-red/50"
                             )}
                         >
                             Featured Only
@@ -106,8 +106,8 @@ export default async function ProjectsPage({
                                     className={cn(
                                         "w-14 h-14 flex items-center justify-center rounded-2xl font-bold transition-all border shadow-sm",
                                         page === i + 1
-                                            ? "bg-blue-600 border-blue-600 text-white shadow-blue-500/20"
-                                            : "bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-800 text-gray-500 hover:border-blue-500/50"
+                                            ? "bg-brand-red border-brand-red text-white shadow-brand-red/20"
+                                            : "bg-card border-border text-muted-text hover:border-brand-red/50"
                                     )}
                                 >
                                     {i + 1}
