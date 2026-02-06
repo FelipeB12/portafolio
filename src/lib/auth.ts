@@ -105,9 +105,3 @@ declare module "next-auth" {
         role: "admin" | "editor" | "viewer";
     }
 }
-
-declare module "next-auth/jwt" {
-    interface JWT {
-        role: "admin" | "editor" | "viewer";
-    }
-}
