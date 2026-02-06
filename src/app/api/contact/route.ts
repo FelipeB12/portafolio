@@ -5,7 +5,7 @@ import { contactMessageSchema } from "@/schemas";
 import { apiResponse, apiError, handleApiError } from "@/lib/auth";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { uploadFile } from "@/lib/upload";
-import { sendEmail } from "@/lib/email";
+// import { sendEmail } from "@/lib/email"; // Temporarily disabled - no email provider configured
 import { triggerWebhook } from "@/lib/webhooks";
 
 /**
@@ -69,7 +69,9 @@ export async function POST(request: NextRequest) {
             file: fileData,
         });
 
-        // 7. Send Email Notification (Async)
+        // 7. Send Email Notification (Async) - TEMPORARILY DISABLED
+        // TODO: Re-enable when email provider is configured
+        /*
         sendEmail({
             to: process.env.SMTP_USER || "admin@portfolio.com",
             subject: `New Contact Message: ${message.name}`,
@@ -85,6 +87,7 @@ export async function POST(request: NextRequest) {
                 </div>
             `
         }).catch(err => console.error("Email notification failed:", err));
+        */
 
         // 8. Trigger n8n Webhook (Async)
         triggerWebhook("contact", {
