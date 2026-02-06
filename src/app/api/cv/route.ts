@@ -59,6 +59,7 @@ export async function POST(request: NextRequest) {
         // Save to DB
         const newCv = await CV.create({
             fileUrl: uploadResult.url,
+            publicId: uploadResult.publicId, // Save the publicId
             fileName: file.name,
             uploadedBy: session.user.id,
         });

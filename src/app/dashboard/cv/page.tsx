@@ -166,7 +166,7 @@ export default function AdminCVPage() {
                                 </div>
                                 <div className="flex gap-4 w-full">
                                     <a
-                                        href={activeCv.fileUrl}
+                                        href="/api/cv/download"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="flex-1 py-3 bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl font-bold text-sm text-center flex items-center justify-center gap-2"
@@ -174,8 +174,7 @@ export default function AdminCVPage() {
                                         <ExternalLink size={16} /> View
                                     </a>
                                     <a
-                                        href={activeCv.fileUrl}
-                                        download
+                                        href="/api/cv/download?download=true"
                                         className="flex-1 py-3 bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl font-bold text-sm text-center flex items-center justify-center gap-2"
                                     >
                                         <Download size={16} /> Download

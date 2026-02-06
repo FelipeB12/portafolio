@@ -3,6 +3,7 @@ import mongoose, { Schema, Document, Model } from "mongoose";
 export interface ICV extends Document {
     _id: mongoose.Types.ObjectId;
     fileUrl: string;
+    publicId?: string; // Add publicId for secure Cloudinary access
     fileName: string;
     uploadedAt: Date;
     uploadedBy: mongoose.Types.ObjectId;
@@ -12,6 +13,9 @@ const CVSchema = new Schema<ICV>({
     fileUrl: {
         type: String,
         required: [true, "File URL is required"],
+    },
+    publicId: {
+        type: String,
     },
     fileName: {
         type: String,

@@ -28,7 +28,7 @@ async function getFeaturedProjects() {
   const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
   try {
     const res = await fetch(`${baseUrl}/api/projects?featured=true&limit=3`, {
-      next: { revalidate: 3600 }, // Revalidate every hour
+      next: { revalidate: 60 }, // Revalidate every minute
     });
     if (!res.ok) return [];
     const json = await res.json();
@@ -43,7 +43,7 @@ async function getLatestPosts() {
   const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
   try {
     const res = await fetch(`${baseUrl}/api/blog?limit=3`, {
-      next: { revalidate: 3600 },
+      next: { revalidate: 60 },
     });
     if (!res.ok) return [];
     const json = await res.json();

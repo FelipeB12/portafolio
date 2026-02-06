@@ -1,27 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Mail } from "lucide-react";
+import { ArrowRight, FileText, Mail } from "lucide-react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 export default function Hero() {
-    const handleDownloadCV = async () => {
-        try {
-            const response = await fetch("/api/cv");
-            const result = await response.json();
-
-            if (result.success && result.data?.fileUrl) {
-                window.open(result.data.fileUrl, "_blank");
-            } else {
-                alert("CV not available at the moment.");
-            }
-        } catch (error) {
-            console.error("Error downloading CV:", error);
-            alert("Failed to fetch CV.");
-        }
-    };
 
     return (
         <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-20 overflow-hidden">
@@ -64,11 +49,11 @@ export default function Hero() {
                     </Link>
 
                     <button
-                        onClick={handleDownloadCV}
+                        onClick={() => window.open("/api/cv/download", "_blank")}
                         className="px-8 py-4 bg-white text-gray-900 dark:bg-gray-800 dark:text-white border border-gray-200 dark:border-gray-700 rounded-xl font-semibold transition-all hover:bg-gray-50 dark:hover:bg-gray-700 hover:translate-y-[-2px] flex items-center gap-2"
                     >
-                        <Download className="w-4 h-4" />
-                        Download CV
+                        <FileText className="w-4 h-4" />
+                        Explore CV
                     </button>
 
                     <Link
