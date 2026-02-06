@@ -37,8 +37,8 @@ export async function GET(request: NextRequest) {
             .sort({ uploadedAt: -1 })
             .lean();
 
-        if (!cv || !cv.fileUrl) {
-            return new NextResponse("CV not found", { status: 404 });
+        if (!cv || !cv.fileUrl || !cv.publicId) {
+            return new NextResponse("CV not found or invalid", { status: 404 });
         }
 
         const isDownload = request.nextUrl.searchParams.get("download") === "true";
