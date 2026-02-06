@@ -10,10 +10,14 @@ export async function middleware(request: NextRequest) {
         const token = await getToken({
             req: request,
             secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET,
+            secureCookie: process.env.NODE_ENV === "production",
         });
+
+        console.log(`[Middleware] Path: ${pathname}, Token exists: ${!!token}, Role: ${token?.role || "none"}`);
 
         // Not authenticated
         if (!token) {
+            console.log(`[Middleware] No token found, redirecting to sign-in`);
             if (pathname.startsWith("/api/admin")) {
                 return NextResponse.json(
                     { success: false, error: "Authentication required" },
@@ -28,6 +32,7 @@ export async function middleware(request: NextRequest) {
 
         // Not admin
         if (token.role !== "admin") {
+            console.log(`[Middleware] User role is ${token.role}, not admin. Redirecting to home.`);
             if (pathname.startsWith("/api/admin")) {
                 return NextResponse.json(
                     { success: false, error: "Forbidden: Admin access required" },
@@ -37,6 +42,8 @@ export async function middleware(request: NextRequest) {
             // Redirect to home for dashboard pages
             return NextResponse.redirect(new URL("/", request.url));
         }
+
+        console.log(`[Middleware] Admin access granted for ${pathname}`);
     }
 
     return NextResponse.next();
