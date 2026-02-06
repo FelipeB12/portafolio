@@ -34,9 +34,25 @@ export const authOptions: NextAuthConfig = {
             return session;
         },
         async jwt({ token, user, trigger, session }: any) {
+            // Initial sign in
             if (user) {
                 token.id = user.id;
                 token.role = user.role || "viewer";
+            }
+
+            // Force a database check for the role if it's not present or if we need the latest
+            // This is crucial for manual DB promotions to work without signing out
+            if (!token.role || token.role === "viewer") {
+                try {
+                    const client = await clientPromise;
+                    const db = client.db();
+                    const dbUser = await db.collection("users").findOne({ email: token.email });
+                    if (dbUser && dbUser.role) {
+                        token.role = dbUser.role;
+                    }
+                } catch (error) {
+                    console.error("Error fetching latest role from DB:", error);
+                }
             }
 
             if (trigger === "update" && session?.role) {
