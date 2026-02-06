@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
     if (pathname.startsWith("/dashboard") || pathname.startsWith("/api/admin")) {
         const token = await getToken({
             req: request,
-            secret: process.env.NEXTAUTH_SECRET,
+            secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET,
         });
 
         // Not authenticated
