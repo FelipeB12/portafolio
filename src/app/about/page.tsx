@@ -44,7 +44,7 @@ export default async function AboutPage() {
             <main className="flex-grow pt-32 pb-24 font-sans">
                 <div className="container max-w-7xl mx-auto px-4">
                     <header className="mb-15 text-center max-w-4xl mx-auto">
-                        <h1 className="text-6xl md:text-8xl font-black tracking-tighter font-display uppercase leading-[1.1]">
+                        <h1 className="text-4xl md:text-8xl font-black tracking-tighter font-display uppercase leading-[1.1]">
                             Dedicated to the <br />
                             <span className="text-brand-red italic">Craft</span> of <span className="text-brand-red">Engineering</span>
                         </h1>

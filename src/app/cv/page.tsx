@@ -34,7 +34,7 @@ export default async function CVPage() {
             <main className="flex-grow pt-32 pb-24">
                 <div className="container max-w-5xl mx-auto px-4">
                     <header className="mb-16 text-center max-w-2xl mx-auto space-y-6">
-                        <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+                        <h1 className="text-4xl md:text-7xl font-bold tracking-tight">
                             Professional <span className="text-brand-red">CV</span>
                         </h1>
                         <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">

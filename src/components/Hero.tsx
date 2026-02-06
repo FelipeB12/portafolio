@@ -32,7 +32,7 @@ export default function Hero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
-                    className="text-5xl md:text-8xl font-black mb-6 tracking-tight font-display"
+                    className="text-4xl md:text-8xl font-black mb-6 tracking-tight font-display"
                 >
                     Building <span className="text-brand-red">Excellence</span> <br />
                     Through <span className="text-brand-gold italic">Logic</span>.

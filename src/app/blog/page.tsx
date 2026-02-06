@@ -49,7 +49,7 @@ export default async function BlogPage({
             <main className="flex-grow pt-32 pb-24">
                 <div className="container max-w-7xl mx-auto px-4">
                     <header className="mb-24 text-center max-w-4xl mx-auto">
-                        <h1 className="text-6xl md:text-8xl font-black tracking-tighter font-display uppercase leading-[1.1]">
+                        <h1 className="text-4xl md:text-8xl font-black tracking-tighter font-display uppercase leading-[1.1]">
                             Technical <span className="text-brand-gold">Writing</span>
                         </h1>
                         <p className="text-xl md:text-2xl text-muted-text max-w-3xl mx-auto font-medium mt-8 leading-relaxed">
