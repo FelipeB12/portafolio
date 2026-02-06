@@ -120,7 +120,7 @@ export default function SignInPage() {
 
             <style jsx>{`
                 .text-glow {
-                    text-shadow: 0 0 20px rgba(37, 99, 235, 0.2);
+                    text-shadow: 0 0 20px rgba(196, 30, 58, 0.2);
                 }
             `}</style>
         </div>
