@@ -22,25 +22,31 @@ export const authOptions: NextAuthConfig = {
             return session;
         },
         async jwt({ token, user, trigger, session }: any) {
-            // Initial sign in
+            // Initial sign in - get user data from adapter
             if (user) {
                 token.id = user.id;
-                token.role = user.role || "viewer";
+                token.email = user.email;
             }
 
-            // Force a database check for the role if it's not present or if we need the latest
-            // This is crucial for manual DB promotions to work without signing out
-            if (!token.role || token.role === "viewer") {
-                try {
-                    const client = await clientPromise;
-                    const db = client.db();
-                    const dbUser = await db.collection("users").findOne({ email: token.email });
-                    if (dbUser && dbUser.role) {
-                        token.role = dbUser.role;
-                    }
-                } catch (error) {
-                    console.error("Error fetching latest role from DB:", error);
+            // ALWAYS check database for the latest role on every request
+            // This ensures manual promotions work and role is always current
+            try {
+                const client = await clientPromise;
+                const db = client.db();
+                const dbUser = await db.collection("users").findOne({
+                    email: token.email
+                });
+
+                if (dbUser && dbUser.role) {
+                    token.role = dbUser.role;
+                    console.log(`[JWT] Role set for ${token.email}: ${token.role}`);
+                } else {
+                    token.role = "viewer";
+                    console.log(`[JWT] No role found for ${token.email}, defaulting to viewer`);
                 }
+            } catch (error) {
+                console.error("[JWT] Error fetching role from DB:", error);
+                token.role = token.role || "viewer";
             }
 
             if (trigger === "update" && session?.role) {
