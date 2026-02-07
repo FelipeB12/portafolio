@@ -34,7 +34,7 @@ export default async function AboutPage() {
 
     const defaultAbout = {
         title: "Full-Stack Software Engineer",
-        bio: "Passionate about building scalable digital solutions with discipline and logic.",
+        bio: "",
         skills: ["React", "TypeScript", "Node.js", "MongoDB", "DevOps"],
     };
 
@@ -45,11 +45,11 @@ export default async function AboutPage() {
                 <div className="container max-w-7xl mx-auto px-4">
                     <header className="mb-15 text-center max-w-4xl mx-auto">
                         <h1 className="text-4xl md:text-8xl font-black tracking-tighter font-display uppercase leading-[1.1]">
-                            Dedicated to the <br />
-                            <span className="text-brand-red italic">Craft</span> of <span className="text-brand-red">Engineering</span>
+                            Build with
+                            <span className="text-brand-red italic">passion,</span> work with <span className="text-brand-red">discipline</span>
                         </h1>
                         <p className="text-xl md:text-2xl text-muted-text max-w-3xl mx-auto font-medium mt-8 leading-relaxed">
-                            {aboutData?.title || defaultAbout.title}. Passionate about building <span className="text-gray-900 dark:text-white font-bold">scalable digital solutions</span> with discipline and logic.
+                            {aboutData?.title || defaultAbout.title}
                         </p>
                     </header>
                 </div>

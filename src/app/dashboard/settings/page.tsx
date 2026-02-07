@@ -65,7 +65,7 @@ export default function SettingsPage() {
                                 <label className="text-sm font-bold text-gray-500 ml-2">Email Address</label>
                                 <input
                                     type="email"
-                                    defaultValue="hello@felipe.dev"
+                                    defaultValue="beltranfelipediaz@gmail.com"
                                     className="w-full px-6 py-4 bg-card border-border rounded-2xl focus:ring-2 focus:ring-brand-red/50 transition-all outline-none border"
                                 />
                             </div>

@@ -73,7 +73,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <p className="text-xs text-muted-text font-black uppercase tracking-widest">Email me at</p>
-                                        <p className="text-xl font-black font-display">hello@felipe.dev</p>
+                                        <p className="text-xl font-black font-display">beltranfelipediaz@gmail.com</p>
                                     </div>
                                 </div>
                             </div>
@@ -116,6 +116,7 @@ export default function ContactPage() {
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="space-y-2">
+                                            <label className="text-xs font-black uppercase tracking-widest text-muted-text ml-2">Name</label>
                                             <input
                                                 required
                                                 name="name"

@@ -1,19 +1,19 @@
 export const siteConfig = {
-    name: "Juan",
+    name: "Felipe Beltran ",
     title: "Full-Stack Developer & Software Engineer",
     description:
-        "Building modern, scalable, and user-centric web applications with Next.js, TypeScript, and MongoDB.",
+        "Lead software engineer - specialized on AI and automation.",
     proposition:
-        "Turning complex problems into elegant, production-ready digital solutions.",
+        "Turning complex problems into elegant, production-ready web solutions.",
     links: {
         github: "https://github.com/felipeb12",
-        linkedin: "https://linkedin.com/in/felipe",
-        email: "felipe@example.com",
+        linkedin: "https://www.linkedin.com/in/juanfbeltran24/",
+        email: "beltranfelipediaz@gmail.com",
     },
     seo: {
         title: "Felipe | Full-Stack Developer",
-        description: "Personal portfolio and blog of Felipe, a Full-Stack Developer.",
-        url: "https://felipe.dev",
+        description: "Professional portfolio and blog of Felipe, a Full-Stack Developer.",
+        url: "https://felipeb12.com",
         ogImage: "/og-image.png",
     },
 };

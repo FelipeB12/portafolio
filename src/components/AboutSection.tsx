@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
-import { User, Award, Globe, Code } from "lucide-react";
+import { CheckCircle, Flame, Zap, Target, Globe } from "lucide-react";
 
 interface AboutSectionProps {
     about: {
@@ -27,14 +27,24 @@ export default function AboutSection({ about }: AboutSectionProps) {
 
                         <div className="grid grid-cols-2 gap-4">
                             <div className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-border group hover:border-brand-red transition-colors">
-                                <Award className="text-brand-red mb-3 group-hover:scale-110 transition-transform" />
+                                <CheckCircle className="text-brand-gold mb-3 group-hover:scale-110 transition-transform" />
                                 <h4 className="font-bold">Discipline</h4>
-                                <p className="text-xs text-muted-text mt-1">Driving every project to completion with precision.</p>
+                                <p className="text-xs text-muted-text mt-1">Working with systems that ensure to deliver results.</p>
                             </div>
                             <div className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-border group hover:border-brand-gold transition-colors">
-                                <Code className="text-brand-gold mb-3 group-hover:scale-110 transition-transform" />
-                                <h4 className="font-bold">Logic</h4>
-                                <p className="text-xs text-muted-text mt-1">Analytical foundations in every line of code.</p>
+                                <Flame className="text-brand-gold mb-3 group-hover:scale-110 transition-transform" />
+                                <h4 className="font-bold">Passion</h4>
+                                <p className="text-xs text-muted-text mt-1">Caring for creating impact and value.</p>
+                            </div>
+                            <div className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-border group hover:border-brand-red transition-colors">
+                                <Zap className="text-brand-gold mb-3 group-hover:scale-110 transition-transform" />
+                                <h4 className="font-bold">Efficiency</h4>
+                                <p className="text-xs text-muted-text mt-1">Success measured by results and impact not by hours or budget.</p>
+                            </div>
+                            <div className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-border group hover:border-brand-red transition-colors">
+                                <Target className="text-brand-gold mb-3 group-hover:scale-110 transition-transform" />
+                                <h4 className="font-bold">Structured</h4>
+                                <p className="text-xs text-muted-text mt-1">Comunication clear, agreements met, deadlines kept.</p>
                             </div>
                         </div>
                     </div>

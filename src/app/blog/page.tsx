@@ -53,7 +53,7 @@ export default async function BlogPage({
                             Technical <span className="text-brand-gold">Writing</span>
                         </h1>
                         <p className="text-xl md:text-2xl text-muted-text max-w-3xl mx-auto font-medium mt-8 leading-relaxed">
-                            Deep dives into the technologies I use every day. Logically structured insights for the <span className="text-gray-900 dark:text-white font-bold">modern engineer.</span>
+                            Deep dives into the technologies, opinions and insights of the <span className="text-gray-900 dark:text-white font-bold">engineer experience.</span>
                         </p>
                     </header>
 
@@ -71,7 +71,7 @@ export default async function BlogPage({
                             All Posts
                         </Link>
                         {/* Ideally fetch unique tags from API, but for now simple list */}
-                        {["Next.js", "TypeScript", "React", "MongoDB", "Architecture"].map((t) => (
+                        {["Next.js", "TypeScript", "React", "MongoDB", "Architecture", "Git"].map((t) => (
                             <Link
                                 key={t}
                                 href={`/blog?tag=${t}`}

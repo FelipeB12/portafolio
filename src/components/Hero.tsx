@@ -19,11 +19,11 @@ export default function Hero() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-red/10 text-brand-red mb-8 border border-brand-red/20 font-semibold"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-red/10 text-brand-gold mb-8 border border-brand-red/20 font-semibold"
                 >
                     <span className="relative flex h-3 w-3">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-red opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-3 w-3 bg-brand-red"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-brand-gold"></span>
                     </span>
                     Available for new projects
                 </motion.div>
@@ -34,8 +34,8 @@ export default function Hero() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="text-4xl md:text-8xl font-black mb-6 tracking-tight font-display"
                 >
-                    Building <span className="text-brand-red">Excellence</span> <br />
-                    Through <span className="text-brand-gold italic">Logic</span>.
+                    BRING YOUR <span className="text-brand-red">IDEAS</span> <br />
+                    TO <span className="text-brand-gold italic">LIFE</span>
                 </motion.h1>
 
                 <motion.p
