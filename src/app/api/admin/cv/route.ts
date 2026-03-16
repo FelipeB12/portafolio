@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
  * GET /api/admin/cv
  * Admin only - List all CVs
  */
-export async function GET(_request: NextRequest) {
+export async function GET() {
     try {
         await requireAdmin();
         await connectDB();

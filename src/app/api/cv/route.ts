@@ -8,7 +8,7 @@ import { uploadFile } from "@/lib/upload";
  * GET /api/cv
  * Public endpoint - Get the most recent CV
  */
-export async function GET(_request: NextRequest) {
+export async function GET() {
     try {
         await connectDB();
 

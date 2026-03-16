@@ -1,4 +1,3 @@
-import { NextRequest } from "next/server";
 import connectDB from "@/lib/db";
 import Project from "@/models/Project";
 import BlogPost from "@/models/BlogPost";
@@ -9,7 +8,7 @@ import { requireAdmin, apiResponse, handleApiError } from "@/lib/auth";
  * GET /api/admin/stats
  * Admin only - Get aggregate statistics for the dashboard
  */
-export async function GET(_request: NextRequest) {
+export async function GET() {
     try {
         await requireAdmin();
         await connectDB();

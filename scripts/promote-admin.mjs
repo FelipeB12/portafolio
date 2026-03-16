@@ -35,7 +35,7 @@ async function promote() {
             if (input.match(/^[0-9a-fA-F]{24}$/)) {
                 try {
                     query = { _id: new ObjectId(input) };
-                } catch (e) {
+                } catch {
                     // Not a valid ObjectId format despite regex
                 }
             }

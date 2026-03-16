@@ -1,0 +1,108 @@
+
+> portafolio@0.1.0 lint
+> eslint .
+
+
+/home/felipe/portafolio/scripts/promote-admin.mjs
+  38:26  warning  'e' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/felipe/portafolio/src/app/api/about/route.ts
+  10:27  warning  '_request' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/felipe/portafolio/src/app/api/admin/blog/route.ts
+  42:27  warning  '_request' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/felipe/portafolio/src/app/api/admin/cv/route.ts
+  38:27  warning  '_request' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/felipe/portafolio/src/app/api/admin/projects/route.ts
+  42:27  warning  '_request' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/felipe/portafolio/src/app/api/admin/stats/route.ts
+  12:27  warning  '_request' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/felipe/portafolio/src/app/api/cv/route.ts
+  11:27  warning  '_request' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/felipe/portafolio/src/app/contact/page.tsx
+  39:18  warning  'err' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/felipe/portafolio/src/app/dashboard/about/page.tsx
+   4:16  warning  'FileText' is defined but never used   @typescript-eslint/no-unused-vars
+   4:76  warning  'ImageIcon' is defined but never used  @typescript-eslint/no-unused-vars
+  63:18  warning  'error' is defined but never used      @typescript-eslint/no-unused-vars
+
+/home/felipe/portafolio/src/app/dashboard/blog/[id]/edit/BlogEditorWrapper.tsx
+   7:61  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  11:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/felipe/portafolio/src/app/dashboard/blog/new/page.tsx
+  11:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/felipe/portafolio/src/app/dashboard/blog/page.tsx
+    7:10  warning  'cn' is defined but never used                                                                                                                                                                                                                                                           @typescript-eslint/no-unused-vars
+   24:19  warning  'error' is assigned a value but never used                                                                                                                                                                                                                                               @typescript-eslint/no-unused-vars
+   48:18  warning  'err' is defined but never used                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+  105:61  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/felipe/portafolio/src/app/dashboard/contact/page.tsx
+  4:5  warning  'User' is defined but never used         @typescript-eslint/no-unused-vars
+  6:5  warning  'CheckCircle' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/felipe/portafolio/src/app/dashboard/cv/page.tsx
+   4:10  warning  'useSession' is defined but never used  @typescript-eslint/no-unused-vars
+  81:18  warning  'error' is defined but never used       @typescript-eslint/no-unused-vars
+
+/home/felipe/portafolio/src/app/dashboard/layout.tsx
+   6:10  warning  'cn' is defined but never used                       @typescript-eslint/no-unused-vars
+  13:12  warning  'isCollapsed' is assigned a value but never used     @typescript-eslint/no-unused-vars
+  13:25  warning  'setIsCollapsed' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/felipe/portafolio/src/app/dashboard/page.tsx
+   12:5   warning  'Loader2' is defined but never used       @typescript-eslint/no-unused-vars
+  144:54  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/felipe/portafolio/src/app/dashboard/projects/[slug]/edit/ProjectEditorWrapper.tsx
+   7:70  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  11:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/felipe/portafolio/src/app/dashboard/projects/new/page.tsx
+  11:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/felipe/portafolio/src/app/dashboard/projects/page.tsx
+    7:10  warning  'cn' is defined but never used                                                                                                                                                                                                                                                           @typescript-eslint/no-unused-vars
+   23:19  warning  'error' is assigned a value but never used                                                                                                                                                                                                                                               @typescript-eslint/no-unused-vars
+   47:18  warning  'err' is defined but never used                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+  104:61  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/felipe/portafolio/src/app/dashboard/settings/page.tsx
+  3:10  warning  'Settings' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/felipe/portafolio/src/auth.ts
+  8:47  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/felipe/portafolio/src/components/BlogEditor.tsx
+    7:10  warning  'Upload' is defined but never used                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+    7:21  warning  'ChevronRight' is defined but never used                                                                                                                                                                                                                                                 @typescript-eslint/no-unused-vars
+  190:33  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/felipe/portafolio/src/components/Hero.tsx
+  7:10  warning  'cn' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/felipe/portafolio/src/components/Navbar.tsx
+  6:52  warning  'User' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/felipe/portafolio/src/components/ProjectEditor.tsx
+    4:21  warning  'Plus' is defined but never used                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+  340:29  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/felipe/portafolio/src/components/TechStack.tsx
+   4:10  warning  'cn' is defined but never used                                                                                                                                                                                                                                                           @typescript-eslint/no-unused-vars
+  45:33  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/felipe/portafolio/src/lib/db.ts
+  22:5  warning  Unused eslint-disable directive (no problems were reported from 'no-var')
+
+✖ 46 problems (8 errors, 38 warnings)
+  0 errors and 1 warning potentially fixable with the `--fix` option.
+

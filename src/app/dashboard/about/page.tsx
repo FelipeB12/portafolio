@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { User, FileText, CheckCircle, AlertCircle, Loader2, Save, Image as ImageIcon, Plus, X } from "lucide-react";
+import { User, CheckCircle, AlertCircle, Loader2, Save, Plus, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
 
