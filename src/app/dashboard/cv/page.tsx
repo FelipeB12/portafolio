@@ -5,10 +5,18 @@ import { useSession } from "next-auth/react";
 import { Upload, FileText, CheckCircle, AlertCircle, Loader2, Download, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+interface CVData {
+    _id: string;
+    fileName: string;
+    url: string;
+    uploadedAt: string;
+    active: boolean;
+}
+
 export default function AdminCVPage() {
     const [file, setFile] = useState<File | null>(null);
     const [isUploading, setIsUploading] = useState(false);
-    const [activeCv, setActiveCv] = useState<any>(null);
+    const [activeCv, setActiveCv] = useState<CVData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 

@@ -5,7 +5,6 @@ import { cvSchema } from "@/schemas";
 import {
     requireAdmin,
     apiResponse,
-    apiError,
     handleApiError,
 } from "@/lib/auth";
 
@@ -36,7 +35,7 @@ export async function POST(request: NextRequest) {
  * GET /api/admin/cv
  * Admin only - List all CVs
  */
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
     try {
         await requireAdmin();
         await connectDB();

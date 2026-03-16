@@ -1,8 +1,8 @@
-const { MongoClient, ObjectId } = require('mongodb');
-const readline = require('readline');
+import { MongoClient, ObjectId } from 'mongodb';
+import readline from 'readline';
 
 // To run this script securely: 
-// node --env-file=.env.local scripts/promote-admin.js
+// node --env-file=.env.local scripts/promote-admin.mjs
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -13,7 +13,7 @@ const uri = process.env.MONGODB_URI;
 
 if (!uri) {
     console.error("❌ MONGODB_URI not found in environment.");
-    console.log("Tip: Run the script with: node --env-file=.env.local scripts/promote-admin.js");
+    console.log("Tip: Run the script with: node --env-file=.env.local scripts/promote-admin.mjs");
     process.exit(1);
 }
 

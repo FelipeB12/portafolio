@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
  * GET /api/admin/projects
  * Admin only - List all projects (including unpublished)
  */
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
     try {
         await requireAdmin();
         await connectDB();

@@ -4,7 +4,6 @@ import ContactMessage from "@/models/ContactMessage";
 import {
     requireAdmin,
     apiResponse,
-    apiError,
     handleApiError,
 } from "@/lib/auth";
 
@@ -20,7 +19,7 @@ export async function GET(request: NextRequest) {
         const { searchParams } = new URL(request.url);
         const processed = searchParams.get("processed");
 
-        const filter: any = {};
+        const filter: Record<string, unknown> = {};
         if (processed !== null) {
             filter.processed = processed === "true";
         }

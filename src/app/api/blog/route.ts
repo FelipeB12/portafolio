@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
             skip: searchParams.get("skip") || undefined,
         });
 
-        const filter: any = {};
+        const filter: Record<string, unknown> = {};
 
         // Only show published posts by default
         if (query.published !== false) {

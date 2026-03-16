@@ -7,9 +7,11 @@ import slugify from "slugify";
 import { toast } from "react-hot-toast";
 
 
+import { ProjectEditorData, Screenshot } from "@/types";
+
 interface ProjectEditorProps {
-    initialData?: any;
-    onSave: (data: any) => Promise<void>;
+    initialData?: Partial<ProjectEditorData>;
+    onSave: (data: ProjectEditorData) => Promise<void>;
     isSubmitting: boolean;
 }
 
@@ -22,7 +24,7 @@ export default function ProjectEditor({ initialData, onSave, isSubmitting }: Pro
     const [role, setRole] = useState(initialData?.role || "");
     const [techStack, setTechStack] = useState<string[]>(initialData?.techStack || []);
     const [keyDecisions, setKeyDecisions] = useState<string[]>(initialData?.keyDecisions || []);
-    const [screenshots, setScreenshots] = useState<any[]>(initialData?.screenshots || []);
+    const [screenshots, setScreenshots] = useState<Screenshot[]>(initialData?.screenshots || []);
     const [liveLink, setLiveLink] = useState(initialData?.liveLink || "");
     const [githubLink, setGithubLink] = useState(initialData?.githubLink || "");
     const [featured, setFeatured] = useState(initialData?.featured || false);

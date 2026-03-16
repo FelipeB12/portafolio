@@ -1,16 +1,14 @@
 "use client";
 
 import AdminSidebar from "@/components/AdminSidebar";
-import { useState } from "react";
 import { Toaster } from "react-hot-toast";
-import { cn } from "@/lib/utils";
 
 export default function AdminLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
-    const [isCollapsed, setIsCollapsed] = useState(false);
+    
 
     return (
         <div className="min-h-screen bg-gray-50/50 dark:bg-black text-gray-900 dark:text-gray-100 flex">

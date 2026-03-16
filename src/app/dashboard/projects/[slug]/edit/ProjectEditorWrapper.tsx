@@ -1,14 +1,15 @@
 "use client";
 
 import ProjectEditor from "@/components/ProjectEditor";
+import { ProjectEditorData } from "@/types";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function ProjectEditorWrapper({ project }: { project: any }) {
+export default function ProjectEditorWrapper({ project }: { project: ProjectEditorData }) {
     const router = useRouter();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleSave = async (data: any) => {
+    const handleSave = async (data: ProjectEditorData) => {
         setIsSubmitting(true);
         try {
             const res = await fetch(`/api/projects/${project.slug}`, {

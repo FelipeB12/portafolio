@@ -29,8 +29,10 @@ function configureCloudinary() {
                 secure: true,
             });
         }
-    } catch (error: any) {
-        console.error("❌ Cloudinary Config Error:", error.message);
+    } catch (error) {
+        if (error instanceof Error) {
+            console.error("❌ Cloudinary Config Error:", error.message);
+        }
     }
 }
 

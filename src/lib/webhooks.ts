@@ -3,7 +3,7 @@ import crypto from "crypto";
 /**
  * Sign a payload with a secret using HMAC-SHA256
  */
-export function signWebhookPayload(payload: any, secret: string): string {
+export function signWebhookPayload(payload: unknown, secret: string): string {
     const data = typeof payload === "string" ? payload : JSON.stringify(payload);
     return crypto.createHmac("sha256", secret).update(data).digest("hex");
 }
@@ -11,7 +11,7 @@ export function signWebhookPayload(payload: any, secret: string): string {
 /**
  * Trigger an n8n webhook with a signed payload
  */
-export async function triggerWebhook(type: string, data: any) {
+export async function triggerWebhook(type: string, data: unknown) {
     const webhookUrl = process.env.N8N_WEBHOOK_URL;
     const secret = process.env.WEBHOOK_SECRET;
 

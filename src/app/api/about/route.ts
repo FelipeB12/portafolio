@@ -7,7 +7,7 @@ import { apiResponse, apiError, handleApiError, requireAdmin } from "@/lib/auth"
  * GET /api/about
  * Public endpoint - Get the latest About profile
  */
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
     try {
         await connectDB();
 

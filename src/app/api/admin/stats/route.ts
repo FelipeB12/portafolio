@@ -9,7 +9,7 @@ import { requireAdmin, apiResponse, handleApiError } from "@/lib/auth";
  * GET /api/admin/stats
  * Admin only - Get aggregate statistics for the dashboard
  */
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
     try {
         await requireAdmin();
         await connectDB();

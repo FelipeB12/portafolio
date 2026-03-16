@@ -51,10 +51,10 @@ export default function ContactPage() {
                 <div className="container max-w-7xl mx-auto px-4">
                     <header className="mb-24 text-center max-w-4xl mx-auto">
                         <h1 className="text-4xl md:text-8xl font-black tracking-tighter font-display uppercase leading-[1.1]">
-                            Let's <span className="text-brand-red">talk.</span>
+                            Let&apos;s <span className="text-brand-red">talk.</span>
                         </h1>
                         <p className="text-xl md:text-2xl text-muted-text max-w-3xl mx-auto font-medium mt-8 leading-relaxed">
-                            Have a project in mind or just want to say hi? I'm always open to <span className="text-gray-900 dark:text-white font-bold">new opportunities</span> and interesting collaborations.
+                            Have a project in mind or just want to say hi? I&apos;m always open to <span className="text-gray-900 dark:text-white font-bold">new opportunities</span> and interesting collaborations.
                         </p>
                     </header>
 
@@ -88,7 +88,7 @@ export default function ContactPage() {
                                     </div>
                                     <h2 className="text-3xl font-bold">Message Sent!</h2>
                                     <p className="text-gray-500 text-lg">
-                                        Thank you for reaching out. I'll get back to you as soon as possible.
+                                        Thank you for reaching out. I&apos;ll get back to you as soon as possible.
                                     </p>
                                     <button
                                         onClick={() => setIsSuccess(false)}

@@ -5,6 +5,7 @@ import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import clientPromise from "@/lib/mongodb-adapter";
 
 export const authOptions: NextAuthConfig = {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     adapter: MongoDBAdapter(clientPromise) as any,
     debug: process.env.NODE_ENV === "development",
     providers: [
@@ -21,14 +22,14 @@ export const authOptions: NextAuthConfig = {
             else if (new URL(url).origin === baseUrl) return url;
             return baseUrl;
         },
-        async session({ session, token }: any) {
+        async session({ session, token }) {
             if (session.user && token) {
                 session.user.id = token.id as string;
                 session.user.role = token.role as "admin" | "editor" | "viewer";
             }
             return session;
         },
-        async jwt({ token, user, trigger, session }: any) {
+        async jwt({ token, user, trigger, session }) {
             // Initial sign in - get user data from adapter
             if (user) {
                 token.id = user.id;

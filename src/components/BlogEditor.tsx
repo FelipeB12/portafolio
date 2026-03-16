@@ -10,9 +10,11 @@ import slugify from "slugify";
 import { toast } from "react-hot-toast";
 
 
+import { BlogEditorData } from "@/types";
+
 interface BlogEditorProps {
-    initialData?: any;
-    onSave: (data: any) => Promise<void>;
+    initialData?: Partial<BlogEditorData>;
+    onSave: (data: BlogEditorData) => Promise<void>;
     isSubmitting: boolean;
 }
 

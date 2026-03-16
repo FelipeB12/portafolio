@@ -1,6 +1,7 @@
 "use client";
 
 import BlogEditor from "@/components/BlogEditor";
+import { BlogEditorData } from "@/types";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -8,7 +9,7 @@ export default function NewBlogPostPage() {
     const router = useRouter();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleSave = async (data: any) => {
+    const handleSave = async (data: BlogEditorData) => {
         setIsSubmitting(true);
         try {
             const res = await fetch("/api/blog", {

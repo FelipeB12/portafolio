@@ -21,10 +21,31 @@ export const metadata = {
   },
 };
 
+interface HomeProject {
+    _id: string;
+    title: string;
+    slug: string;
+    shortDescription: string;
+    techStack: string[];
+    screenshots: { url: string; alt: string }[];
+    githubLink?: string;
+    liveLink?: string;
+}
+
+interface HomePost {
+    _id: string;
+    title: string;
+    slug: string;
+    excerpt: string;
+    publishedAt: string;
+    tags: string[];
+    coverImage?: string;
+}
+
 /**
  * Server-side data fetching
  */
-async function getFeaturedProjects() {
+async function getFeaturedProjects(): Promise<HomeProject[]> {
   const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
   try {
     const res = await fetch(`${baseUrl}/api/projects?featured=true&limit=3`, {
@@ -39,7 +60,7 @@ async function getFeaturedProjects() {
   }
 }
 
-async function getLatestPosts() {
+async function getLatestPosts(): Promise<HomePost[]> {
   const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
   try {
     const res = await fetch(`${baseUrl}/api/blog?limit=3`, {
@@ -91,7 +112,7 @@ export default async function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredProjects.map((project: any) => (
+              {featuredProjects.map((project: HomeProject) => (
                 <ProjectCard key={project._id} project={project} />
               ))}
               {featuredProjects.length === 0 && (
@@ -125,7 +146,7 @@ export default async function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {latestPosts.map((post: any) => (
+              {latestPosts.map((post: HomePost) => (
                 <BlogCard key={post._id} post={post} />
               ))}
               {latestPosts.length === 0 && (

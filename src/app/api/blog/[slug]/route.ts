@@ -18,7 +18,7 @@ export async function GET(
 
         const isUserAdmin = await isAdmin();
 
-        const filter: any = { slug };
+        const filter: Record<string, unknown> = { slug };
         if (!isUserAdmin) {
             filter.publishedAt = { $lte: new Date() };
         }

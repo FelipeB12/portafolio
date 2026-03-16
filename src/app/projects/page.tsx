@@ -11,7 +11,18 @@ export const metadata: Metadata = {
     description: "A showcase of my recent work in web development, DevOps, and software architecture.",
 };
 
-async function getProjects(featured?: boolean, page = 1) {
+interface ProjectsPageProject {
+    _id: string;
+    title: string;
+    slug: string;
+    shortDescription: string;
+    techStack: string[];
+    screenshots: { url: string; alt: string }[];
+    githubLink?: string;
+    liveLink?: string;
+}
+
+async function getProjects(featured?: boolean, page = 1): Promise<{ projects: ProjectsPageProject[], total: number }> {
     const limit = 6;
     const skip = (page - 1) * limit;
     const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
@@ -86,7 +97,7 @@ export default async function ProjectsPage({
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-20">
-                        {projects.map((project: any) => (
+                        {projects.map((project: ProjectsPageProject) => (
                             <ProjectCard key={project._id} project={project} />
                         ))}
                         {projects.length === 0 && (

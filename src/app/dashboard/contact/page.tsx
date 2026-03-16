@@ -1,6 +1,4 @@
-"use client";
-
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
     Mail,
     User,
@@ -16,18 +14,28 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+interface Message {
+    _id: string;
+    name: string;
+    email: string;
+    message: string;
+    processed: boolean;
+    createdAt: string;
+    projectBudget?: string;
+    file?: {
+        url: string;
+        name: string;
+    };
+}
+
 export default function AdminContactMessagesPage() {
-    const [messages, setMessages] = useState<any[]>([]);
+    const [messages, setMessages] = useState<Message[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [filter, setFilter] = useState<"all" | "pending" | "processed">("all");
     const [search, setSearch] = useState("");
-    const [selectedMessage, setSelectedMessage] = useState<any | null>(null);
+    const [selectedMessage, setSelectedMessage] = useState<Message | null>(null);
 
-    useEffect(() => {
-        fetchMessages();
-    }, [filter]);
-
-    const fetchMessages = async () => {
+    const fetchMessages = useCallback(async () => {
         setIsLoading(true);
         try {
             const query = filter === "all" ? "" : `?processed=${filter === "processed"}`;
@@ -41,7 +49,11 @@ export default function AdminContactMessagesPage() {
         } finally {
             setIsLoading(false);
         }
-    };
+    }, [filter]);
+
+    useEffect(() => {
+        fetchMessages();
+    }, [fetchMessages]);
 
     const toggleProcessed = async (id: string, currentStatus: boolean) => {
         try {

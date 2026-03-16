@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { ArrowRight, FileText, Mail } from "lucide-react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
 
 export default function Hero() {
 

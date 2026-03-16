@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
             skip: searchParams.get("skip"),
         });
 
-        const filter: any = {};
+        const filter: Record<string, unknown> = {};
         if (query.featured !== undefined) {
             filter.featured = query.featured;
         }

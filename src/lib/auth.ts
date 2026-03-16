@@ -1,17 +1,18 @@
 import { auth } from "@/auth";
+import { Session } from "next-auth";
 
 /**
  * Get the current authenticated session
  */
-export async function getSession(): Promise<any> {
+export async function getSession(): Promise<Session | null> {
     return await auth();
 }
 
 /**
  * Require authentication - throws if not authenticated
  */
-export async function requireAuth(): Promise<{ user: { role: string; id: string; email: string; name: string } }> {
-    const session = await getSession() as { user: { role: string; id: string; email: string; name: string } } | null;
+export async function requireAuth(): Promise<Session> {
+    const session = await getSession();
 
     if (!session || !session.user) {
         throw new Error("Unauthorized");
@@ -23,7 +24,7 @@ export async function requireAuth(): Promise<{ user: { role: string; id: string;
 /**
  * Require admin role - throws if not admin
  */
-export async function requireAdmin(): Promise<{ user: { role: string; id: string; email: string; name: string } }> {
+export async function requireAdmin(): Promise<Session> {
     const session = await requireAuth();
 
     if (session.user.role !== "admin") {
@@ -38,7 +39,7 @@ export async function requireAdmin(): Promise<{ user: { role: string; id: string
  */
 export async function isAdmin(): Promise<boolean> {
     try {
-        const session = await getSession() as { user: { role: string } } | null;
+        const session = await getSession();
         return session?.user?.role === "admin";
     } catch {
         return false;

@@ -4,18 +4,27 @@ import useSWR from "swr";
 import Link from "next/link";
 import { Plus, Search, Edit2, Eye, Trash2, Loader2, Briefcase } from "lucide-react";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
 import { toast } from "react-hot-toast";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+interface DashboardProject {
+    _id: string;
+    title: string;
+    slug: string;
+    shortDescription: string;
+    featured: boolean;
+    createdAt: string;
+    screenshots: { url: string; alt: string }[];
+}
 
 export default function DashboardProjectsPage() {
     const { data, error, isLoading, mutate } = useSWR("/api/admin/projects", fetcher);
     const [search, setSearch] = useState("");
 
-    const projects = data?.success ? (Array.isArray(data.data) ? data.data : data.data.projects) || [] : [];
+    const projects: DashboardProject[] = data?.success ? (Array.isArray(data.data) ? data.data : data.data.projects) || [] : [];
 
-    const filteredProjects = projects.filter((p: any) =>
+    const filteredProjects = projects.filter((p: DashboardProject) =>
         p.title.toLowerCase().includes(search.toLowerCase()) ||
         p.shortDescription.toLowerCase().includes(search.toLowerCase())
     );
@@ -85,7 +94,7 @@ export default function DashboardProjectsPage() {
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-50 dark:divide-gray-800">
-                                    {filteredProjects.map((project: any) => (
+                                    {filteredProjects.map((project: DashboardProject) => (
                                         <tr key={project._id} className="group hover:bg-gray-50/50 dark:hover:bg-gray-800/20 transition-all">
                                             <td className="p-8">
                                                 <div className="flex items-center gap-6">

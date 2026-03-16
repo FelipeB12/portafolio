@@ -1,4 +1,4 @@
-const { v2: cloudinary } = require('cloudinary');
+import { v2 as cloudinary } from 'cloudinary';
 
 // Explicit configuration
 cloudinary.config({

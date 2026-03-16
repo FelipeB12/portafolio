@@ -4,18 +4,28 @@ import useSWR from "swr";
 import Link from "next/link";
 import { Plus, Search, Edit2, Eye, Trash2, Loader2, FileEdit } from "lucide-react";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
 import { toast } from "react-hot-toast";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+interface DashboardPost {
+    _id: string;
+    title: string;
+    slug: string;
+    excerpt: string;
+    coverImage?: string;
+    tags: string[];
+    publishedAt?: string;
+    createdAt: string;
+}
 
 export default function DashboardBlogPage() {
     const { data, error, isLoading, mutate } = useSWR("/api/admin/blog", fetcher);
     const [search, setSearch] = useState("");
 
-    const posts = data?.success ? (Array.isArray(data.data) ? data.data : data.data.posts) || [] : [];
+    const posts: DashboardPost[] = data?.success ? (Array.isArray(data.data) ? data.data : data.data.posts) || [] : [];
 
-    const filteredPosts = posts.filter((p: any) =>
+    const filteredPosts = posts.filter((p: DashboardPost) =>
         p.title.toLowerCase().includes(search.toLowerCase()) ||
         p.excerpt.toLowerCase().includes(search.toLowerCase())
     );
@@ -85,7 +95,7 @@ export default function DashboardBlogPage() {
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-50 dark:divide-gray-800">
-                                    {filteredPosts.map((post: any) => (
+                                    {filteredPosts.map((post: DashboardPost) => (
                                         <tr key={post._id} className="group hover:bg-gray-50/50 dark:hover:bg-gray-800/20 transition-all">
                                             <td className="p-8">
                                                 <div className="flex items-center gap-6">

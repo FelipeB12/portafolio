@@ -9,7 +9,17 @@ export const metadata: Metadata = {
     description: "Writing about software engineering, devops, and modern web development.",
 };
 
-async function getPosts(tag?: string, page = 1) {
+interface BlogPagePost {
+    _id: string;
+    title: string;
+    slug: string;
+    excerpt: string;
+    publishedAt: string;
+    tags: string[];
+    coverImage?: string;
+}
+
+async function getPosts(tag?: string, page = 1): Promise<{ posts: BlogPagePost[], total: number }> {
     const limit = 9;
     const skip = (page - 1) * limit;
     const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
@@ -88,7 +98,7 @@ export default async function BlogPage({
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                        {posts.map((post: any) => (
+                        {posts.map((post: BlogPagePost) => (
                             <BlogCard key={post._id} post={post} />
                         ))}
                         {posts.length === 0 && (

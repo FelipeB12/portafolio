@@ -15,6 +15,13 @@ import {
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
+interface ActivityItem {
+    type: 'project' | 'post' | 'contact';
+    title: string;
+    date: string;
+    id: string;
+}
+
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function DashboardPage() {
@@ -37,7 +44,7 @@ export default function DashboardPage() {
     }
 
     const stats = data?.success ? data.data.counts : null;
-    const activity = data?.success ? data.data.recentActivity : [];
+    const activity: ActivityItem[] = data?.success ? data.data.recentActivity : [];
 
     const statCards = [
         {
@@ -70,7 +77,7 @@ export default function DashboardPage() {
             <header className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div>
                     <h1 className="text-4xl font-black tracking-tight uppercase font-display">System <span className="text-brand-red">Overview</span></h1>
-                    <p className="text-gray-500 mt-1">Here's what's happening with your portfolio today.</p>
+                    <p className="text-gray-500 mt-1">Here&apos;s what&apos;s happening with your portfolio&apos;s today.</p>
                 </div>
 
                 <div className="flex gap-4">
@@ -141,7 +148,7 @@ export default function DashboardPage() {
                     <div className="bg-white dark:bg-gray-900 rounded-[3rem] border border-gray-100 dark:border-gray-800 shadow-sm overflow-hidden">
                         {activity.length > 0 ? (
                             <div className="divide-y divide-gray-100 dark:divide-gray-800">
-                                {activity.map((item: any, i: number) => (
+                                {activity.map((item: ActivityItem, i: number) => (
                                     <div key={i} className="p-8 flex items-center justify-between group hover:bg-gray-50 dark:hover:bg-gray-800/20 transition-colors">
                                         <div className="flex items-center gap-6">
                                             <div className={cn(

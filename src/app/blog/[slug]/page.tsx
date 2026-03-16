@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { siteConfig } from "@/config/site";
 import { markdownToHtml } from "@/lib/markdown";
-import { Calendar, Tag, ChevronLeft, Clock } from "lucide-react";
+import { Calendar, ChevronLeft, Clock } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
