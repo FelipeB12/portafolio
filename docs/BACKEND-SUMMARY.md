@@ -38,10 +38,10 @@
   - `requireAdmin()` - Require admin role
   - `apiResponse()` / `apiError()` - Consistent responses
 
-- **Middleware** ([src/middleware.ts](file:///home/felipe/portafolio/src/middleware.ts))
+- **Proxy** ([src/proxy.ts](file:///home/felipe/portafolio/src/proxy.ts))
   - Protects `/admin/*` routes
   - Protects `/api/admin/*` endpoints
-  - Role-based access control
+  - Role-based access control (using Auth.js v5 `auth()` wrapper)
 
 ### 4. API Endpoints
 
@@ -95,7 +95,8 @@ See [.env.example](file:///home/felipe/portafolio/.env.example) for complete con
 
 **Required:**
 - `MONGODB_URI` - MongoDB connection string
-- `NEXTAUTH_SECRET` - NextAuth secret key
+- `AUTH_SECRET` - Secret for signing tokens (Auth.js v5 requirement)
+- `NEXTAUTH_SECRET` - NextAuth secret key (legacy fallback)
 - `NEXTAUTH_URL` - Application URL
 
 **Optional:**
@@ -232,7 +233,7 @@ src/
 │   └── index.ts                       # Zod schemas
 ├── scripts/
 │   └── seed.ts                        # Database seed
-└── middleware.ts                      # Route protection
+└── proxy.ts                           # Edge authentication (Next.js 16 convention)
 ```
 
 ## ✅ Acceptance Criteria

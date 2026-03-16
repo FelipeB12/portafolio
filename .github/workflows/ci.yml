@@ -39,6 +39,7 @@ jobs:
         run: npm run build
         env:
           # Provide dummy env vars for build
+          AUTH_SECRET: dummy-secret-for-ci
           NEXTAUTH_SECRET: dummy-secret-for-ci
           NEXTAUTH_URL: http://localhost:3000
 
